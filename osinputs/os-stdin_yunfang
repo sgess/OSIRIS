@@ -1,0 +1,410 @@
+  simulation
+{
+  n0 = 1.37d16
+}
+
+node_conf 
+{
+  node_number(1:2) = 8, 4,
+  if_periodic(1:2) = .false., .false.,  
+}
+
+!----------spatial grid----------
+
+grid 
+{
+
+
+  nx_p(1:2) = 800, 220,  
+  coordinates = "cylindrical",
+}
+
+!----------time step and global data dump timestep number----------
+
+time_step 
+{
+  dt     =   0.02,
+  ndump  =   400, 
+}
+
+!----------restart information----------
+
+restart 
+{
+  ndump_fac = 0, 
+  if_restart=.false.,
+  if_remold = .true.,
+}
+
+!----------spatial limits of the simulations----------
+
+!(note that this includes information about
+
+! the motion of the simulation box)
+
+space 
+{
+  xmin(1:2) =   0.000d0 ,  0.0 ,
+  xmax(1:2) =  40.0,  11.0, 
+  if_move= .true., .false.,
+}
+
+!----------time limits ----------
+
+time 
+{
+  tmin = 0.0d0, tmax =1500,
+}
+
+!----------field solver set up----------
+
+el_mag_fld 
+{
+}
+
+
+!----------boundary conditions for em-fields ----------
+
+emf_bound 
+{
+  type(1:2,1) =   1,  1, 
+  type(1:2,2) =   20,  5,
+}
+
+
+!----------diagnostic for electromagnetic fields---------- 
+diag_emf
+{
+  ndump_fac = 1,
+  reports = "e1","e2","b1","b2","b3",
+
+  ndump_fac_ene_int = 0,
+  ndump_fac_ave = 0,
+  ndump_fac_lineout = 0,
+
+  n_ave(1:2)  = 2, 2,
+}
+
+!----------number of particle species----------
+
+particles 
+{   
+  num_species = 5, 
+}
+
+!----------information for species 1----------
+
+species 
+{
+  name='beam1',
+  num_par_max = 44000,
+  rqm=-1.0,
+  num_par_x(1:2) = 2, 2, 
+  vth(1:3) = 0.0d0 , 0.020d0 , 0.020d0 ,
+  vfl(1:2) = 0.0d0 , 0.0d0 , 
+  
+  free_stream = .false.
+  den_min = 1.d-6,
+  
+  dgam = 0.5763,
+  num_dgam = 48049,
+  num_ddgam= 47849,
+
+}
+
+
+!----------density profile for this species----------
+!  actual profile
+
+profile
+{
+  profile_type(1:2) = "piecewise-linear", "gaussian",
+  num_x= 6,   
+  fx(1:6,1) = 0.,  0.,  1.,  1.,  0.,  0.,
+   x(1:6,1) = 0., 35.858, 35.8584, 39., 39.001, 40.,
+   gauss_center(2) = 0.0,
+  gauss_sigma(2) = 2.2, 
+  gauss_range(1:2,2) = 0, 11,              
+  density = 0.00178,
+}
+
+
+
+!----------boundary conditions for this species----------
+
+spe_bound 
+{
+  type(1:2,1) =   1,  1,
+  type(1:2,2) =   20,  5,
+}
+
+diag_species
+{
+  ndump_fac = 1,
+  reports = "charge",
+  ndump_fac_pha = 2,
+  ndump_fac_raw=4,
+  ps_xmin(1:2) =  0.0,  0.0,
+  ps_xmax(1:2) = 40, 11,
+  ps_nx(1:2)   = 400,100,
+
+  ps_pmin(1:2) = 103.72,  -10.0,
+  ps_pmax(1:2) = 127.20,  10.0, 
+  ps_np(1:2)   =  400,  100,
+  if_ps_p_auto(1:2) = .false., .false.,
+  phasespaces = "p1x1", "p1x2", "p2x1", "p2x2","p1p2",
+}
+
+
+!----------information for species 2----------
+
+species 
+{
+  name='beam2',
+  num_par_max = 44000,
+  rqm=-1.0,
+  num_par_x(1:2) = 2, 2, 
+  vth(1:3) = 0.0d0 , 0.020d0 , 0.020d0 ,
+  vfl(1:2) = 0.0d0 , 0.0d0 , 
+  
+  free_stream = .false.
+  den_min = 1.d-6,
+  
+  dgam = 0.5763,
+  num_dgam = 48364,
+  num_ddgam= 48164,
+}
+
+
+!----------density profile for this species----------
+!  actual profile
+
+profile
+{
+  profile_type(1:2) = "piecewise-linear", "gaussian",
+
+  num_x= 6,   
+  
+  fx(1:6,1) = 0.,  0.,  1.,  1.,  0.,  0.,
+   x(1:6,1) = 0, 29.574, 29.5752, 32.7168, 32.7180, 33,
+   gauss_center(2) = 0.0,
+  gauss_sigma(2) = 2.2, 
+  gauss_range(1:2,2) = 0, 11,              
+  density = 0.00178,
+}
+
+!----------boundary conditions for this species----------
+
+spe_bound 
+{
+  type(1:2,1) =   1,  1,
+  type(1:2,2) =   20,  5,
+}
+
+diag_species
+{
+  ndump_fac = 1,
+  reports = "charge",
+  ndump_fac_pha = 2,
+  ndump_fac_raw= 4,
+  ps_xmin(1:2) =  0.0,  0.0,
+  ps_xmax(1:2) = 40, 11,
+  ps_nx(1:2)   = 400,100,
+
+  ps_pmin(1:2) = 103.72,  -10.0,
+  ps_pmax(1:2) = 127.20,  10.0, 
+  ps_np(1:2)   =  400,  100,
+  if_ps_p_auto(1:2) = .false., .false.,
+  phasespaces = "p1x1", "p1x2", "p2x1", "p2x2","p1p2",
+}
+
+!----------information for species 3----------
+
+species 
+{
+  name='beam3',
+  num_par_max = 44000,
+  rqm=-1.0,
+  num_par_x(1:2) = 2, 2, 
+  vth(1:3) = 0.0d0 , 0.020d0 , 0.020d0 ,
+  vfl(1:2) = 0.0d0 , 0.0d0 , 
+  
+  free_stream = .false.
+  den_min = 1.d-6,
+  
+  dgam = 0.5763,
+  num_dgam = 48677,
+  num_ddgam= 48477,
+}
+
+
+!----------density profile for this species----------
+!  actual profile
+
+profile
+{
+  profile_type(1:2) = "piecewise-linear", "gaussian",
+
+  num_x= 6,   
+  
+  fx(1:6,1) = 0.,  0.,  1.,  1.,  0.,  0.,
+   x(1:6,1) = 0, 23.290, 23.2920, 26.4336, 26.45, 27,
+   gauss_center(2) = 0.0,
+  gauss_sigma(2) = 2.2, 
+  gauss_range(1:2,2) = 0, 11,              
+  density = 0.00178,
+}
+
+!----------boundary conditions for this species----------
+
+spe_bound 
+{
+  type(1:2,1) =   1,  1,
+  type(1:2,2) =   20,  5,
+}
+
+diag_species
+{
+  ndump_fac = 1,
+  reports = "charge",
+  ndump_fac_raw= 4,
+  ndump_fac_pha =2,
+  ps_xmin(1:2) =  0.0,  0.0,
+  ps_xmax(1:2) = 40, 11,
+  ps_nx(1:2)   = 512,128,
+
+  ps_pmin(1:2) = 103.72,  -10.0,
+  ps_pmax(1:2) = 127.20,  10.0, 
+  ps_np(1:2)   =  400,  100,
+  if_ps_p_auto(1:2) = .false., .false.,
+  phasespaces = "p1x1", "p1x2", "p2x1", "p2x2","p1p2",
+}
+
+
+!----------information for species 4----------
+
+species 
+{
+  name='beam4',
+  num_par_max = 44000,
+  rqm=-1.0,
+  num_par_x(1:2) = 2, 2, 
+  vth(1:3) = 0.0d0 , 0.020d0 , 0.020d0
+  vfl(1:2) = 0.0d0 , 0.0d0 , 
+  
+  free_stream = .false.
+  den_min = 1.d-6,
+  
+  dgam = 0.5763,
+  num_dgam = 49150,
+  num_ddgam= 48950,
+
+  
+}
+
+
+!----------density profile for this species----------
+!  actual profile
+
+profile
+{
+  profile_type(1:2) = "piecewise-linear", "gaussian",
+
+  num_x= 6,   
+  
+  fx(1:6,1) = 0.,  0.,  1.,  1.,  0.,  0.,
+   x(1:6,1) = 0, 13.866, 13.8672, 17.0088, 17.01, 18,
+   gauss_center(2) = 0.0,
+  gauss_sigma(2) = 2.2, 
+  gauss_range(1:2,2) = 0, 11,              
+  density = 0.00009,
+}
+
+!----------boundary conditions for this species----------
+
+spe_bound 
+{
+  type(1:2,1) =   1,  1,
+  type(1:2,2) =   20,  5,
+}
+
+diag_species
+{
+  ndump_fac = 1,
+  reports = "charge",
+  ndump_fac_pha = 2,
+  ndump_fac_raw=4,
+  ps_xmin(1:2) =  0.0,  0.0,
+  ps_xmax(1:2) = 40, 11,
+  ps_nx(1:2)   = 512,128,
+
+  ps_pmin(1:2) = 103.72,  -10.0,
+  ps_pmax(1:2) = 127.20,  10.0, 
+  ps_np(1:2)   =  400,  100,
+  if_ps_p_auto(1:2) = .false., .false.,
+ phasespaces = "p1x1", "p1x2", "p2x1", "p2x2","p1p2",
+}
+!----------information for species 5---------
+species
+{
+  name='pelectron',
+  num_par_max = 44000,
+  rqm=-1.0,
+  num_par_x(1:2) = 2, 2, 
+  vth(1:2) = 0.00d0 , 0.00d0 , 
+  vfl(1:2) = 0.00d0 , 0.00d0 , 
+  den_min = 1.d-6,
+}
+
+
+!----------density profile for this species----------
+profile
+{ 
+  density = 1.0,
+  num_x = 6,   
+  
+  fx(1:6,1) = 0.,  0.0000,   1.0,    1.0,    0.0000,   0.0,
+   x(1:6,1) = 0., 1000.,  1000.1,   1d6,  1.01d6, 2.0d6,
+  fx(1:6,2) = 1., 1., 1., 1., 0., 0.,
+   x(1:6,2) = 0., 4., 10., 11., 11.01, 12.,
+  }  
+
+!----------boundary conditions for this species----------
+spe_bound
+{
+  type(1:2,1) =   1,  1,
+  type(1:2,2) =   20,  5,
+}
+
+diag_species
+{
+  ndump_fac = 1,
+  reports = "charge",
+
+  ndump_fac_pha = 2,
+
+  ps_xmin(1:2) =  0.0,  0.0,
+  ps_xmax(1:2) = 40., 11.,
+  ps_nx(1:2)   = 1000,300,
+
+  ps_pmin(1:2) = -10, -10.0, 
+  ps_pmax(1:2) = 10,  10.0,  
+  ps_np(1:2)   = 400,  100, 
+  if_ps_p_auto(1:2) = .false., .false.,
+
+  phasespaces = "p1x1", "p2x1", "p2x2", "p1x2", "x1x2",
+
+}
+
+!----------smoothing for currents----------
+smooth 
+{
+  ifsmooth(1)     = .true.,
+  smooth_level(1) = 5,
+  swfj(1:3,1,1) = 1,2,1,
+  swfj(1:3,2,1) = 1,2,1,
+  swfj(1:3,3,1) = 1,2,1,
+  swfj(1:3,4,1) = 1,2,1,
+  swfj(1:3,5,1) = -5,14,-5,
+}
+
