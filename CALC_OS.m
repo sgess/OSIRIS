@@ -55,7 +55,7 @@ end
 
 % Betatron frequecy, wavelength
 param_struct.beam.omega_b  = sqrt(param_struct.plasma.density*1e6*SI_e^2/... 
-    (2*param_struct.beam.gamma*param_struct.plasma.mass*SI_em*SI_eps0));     % betatron frequency [rad/s]
+    (2*param_struct.beam.gamma*param_struct.beam.mass*SI_em*SI_eps0));       % betatron frequency [rad/s]
 param_struct.beam.lambda_b = 2*pi*SI_c*1e6/param_struct.beam.omega_b;        % betatron wavelength [um]
 
 % Calc beam size if beam_match == 1
@@ -129,8 +129,8 @@ param_struct.size.cell_frac = input_struct.size.cell;                           
 param_struct.size.cell_size = param_struct.size.cell_frac*param_struct.plasma.SD; % Cell size [um]
 
 % Determine simulation box size
-param_struct.size.Box_X = ceil(input_struct.size.X_beamradii*param_struct.beam.kpsx); % Box size X [skin depths]
-param_struct.size.Box_Z = ceil(2*pi*input_struct.size.Z_wavelengths);                 % Box size Z [skin depths]
+param_struct.size.Box_X = ceil(input_struct.size.X_bunches*param_struct.beam.kpsx); % Box size X [skin depths]
+param_struct.size.Box_Z = ceil(2*pi*input_struct.size.Z_waves);                     % Box size Z [skin depths]
 
 % Determine simulation box size
 param_struct.size.X = param_struct.size.Box_X*param_struct.plasma.SD; % Box size X [um]
