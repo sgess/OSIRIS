@@ -158,13 +158,13 @@ end
 % Calculate length of simulation in skin depth units
 param_struct.time.L_real  = input_struct.sim.prop*1e4;                               % Propagation length in plasma [um]
 param_struct.time.L_norm  = param_struct.time.L_real/param_struct.plasma.SD;         % Propagation length in plasma [skin depths]
-param_struct.time.L_steps = ceil(param_struct.time.L_norm/param_struct.time.d_norm); % Time steps in plasma
+param_struct.time.L_time  = ceil(param_struct.time.L_norm/param_struct.time.d_norm); % Propagation time in plasma [1/omega_p]
 
 % Calculate total simulation time including beam initialization
-param_struct.time.d_gam_norm  = input_struct.sim.gamma_steps;                           % Number of steps to accelerate beam
+param_struct.time.d_gam_norm  = input_struct.sim.gamma_steps;                           % Number of steps to accelerate beam [1/omega_p]
 param_struct.time.d_gamma     = param_struct.beam.gamma/param_struct.time.d_gam_norm;   % Acceleration in gamma per step
-param_struct.time.num_dgam    = ceil(param_struct.size.Box_Z/param_struct.time.d_norm); % Number of steps before plasma
-param_struct.time.total_steps = param_struct.time.num_dgam+param_struct.time.L_steps;   % Total number of time steps in sim
+param_struct.time.num_dgam    = ceil(param_struct.size.Box_Z/param_struct.time.d_norm); % Number of time steps before plasma [1/omega_p]
+param_struct.time.L_tot       = param_struct.time.num_dgam+param_struct.time.L_time;    % Total time of simulation [1/omega_p]
 
 
 
@@ -196,7 +196,7 @@ end
 % Calculate where to put plasma
 param_struct.pos.plasma_Z_start = param_struct.time.num_dgam*param_struct.time.d_norm+param_struct.size.Box_Z; % Plasma start [skin depths]
 param_struct.pos.plasma_Z_ramp  = input_struct.sim.plasma_Z_ramp+param_struct.pos.plasma_Z_start;              % Plasma ramp [skin depths]
-param_struct.pos.plasma_Z_end   = 10*param_struct.time.total_steps;                                            % Plasma end [skin depths]
+param_struct.pos.plasma_Z_end   = 10*param_struct.time.L_tot;                                                  % Plasma end [skin depths]
 param_struct.pos.plasma_X_start = 0.0;                                                                         % Plasma start [skin depths]
 param_struct.pos.plasma_X_end   = param_struct.size.Box_Z-0.1;                                                 % Plasma end [skin depths]
 param_struct.pos.plasma_X_ramp  = param_struct.pos.plasma_X_end+input_struct.sim.plasma_X_ramp;                % Plasma ramp [skin depths]
@@ -225,7 +225,8 @@ else
 end
 
 param_struct.sim.coordinates = input_struct.sim.coordinates;
-param_struct.sim.ndump       = floor(param_struct.time.total_steps/input_struct.sim.n_dumps);
+param_struct.sim.tot_steps   = ceil(param_struct.time.L_tot/param_struct.time.d_norm);
+param_struct.sim.ndump       = floor(param_struct.sim.tot_steps/input_struct.sim.n_dumps);
 param_struct.sim.N_species   = input_struct.sim.N_species;
 param_struct.sim.free_stream = input_struct.sim.free_stream;
 param_struct.sim.den_min     = input_struct.sim.density_res;

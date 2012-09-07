@@ -18,7 +18,7 @@ os_struct.space.xmin = [num2str(0.0) sep num2str(0.0) eol];
 os_struct.space.xmax = [num2str(param_struct.size.Box_Z) sep num2str(param_struct.size.Box_X) eol];
 os_struct.space.if_move = '.true., .false.,\n';
 
-os_struct.time.tmin = [num2str(0.0) sep 'tmax = ' num2str(param_struct.time.total_steps) eol];
+os_struct.time.tmin = [num2str(0.0) sep 'tmax = ' num2str(param_struct.time.L_tot) eol];
 
 os_struct.particles.num_species = [num2str(param_struct.sim.N_species) eol];
 
@@ -62,9 +62,4 @@ os_struct.profile(2).fx2 = [num2str(1.0) sep num2str(1.0) sep num2str(1.0)...
 os_struct.profile(2).x2 = [num2str(0.0) sep num2str(param_struct.size.Box_X/2)...
     sep num2str(3*param_struct.size.Box_X/4) sep num2str(param_struct.pos.plasma_X_end)...
     sep num2str(param_struct.pos.plasma_X_ramp) sep num2str(param_struct.size.Box_X) eol];
-
-
-
-
-
 

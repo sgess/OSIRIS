@@ -26,7 +26,7 @@ if ~exist(param_dir,'dir')
 end
 
 % CHANGE ME!!!!!!!!!!!!!!
-osinput_output_name = 'test1';
+osinput_output_name = 'eShort2';
 
 osinput_output_file = [osinput_dir 'os-stdin_' osinput_output_name];
 
@@ -52,8 +52,8 @@ input_struct.sim.gamma_steps     = 400;             % number of time steps for b
 input_struct.sim.plasma_X_ramp   = 0.05;            % transverse plasma ramp in skin depths (to avoid noise at boundary) 
 input_struct.sim.plasma_Z_ramp   = 3;               % longitudinal plasma ramp in skin depths (to avoid trapped charge) 
 input_struct.sim.density_res     = 1e-8;            % resolution of beam and plasma density relative to n0 
-input_struct.sim.nodeX           = 16;              % number of "transverse nodes"
-input_struct.sim.nodeZ           = 16;              % number of "longitudinal nodes" 
+input_struct.sim.nodeX           = 8;               % number of "transverse nodes"
+input_struct.sim.nodeZ           = 8;               % number of "longitudinal nodes" 
 input_struct.sim.n_dumps         = 50;              % number of data dumps per run 
 input_struct.sim.free_stream     = '.false.';       % false : beam evolves, true : free stream, no evolution
 
@@ -63,7 +63,7 @@ input_struct.plasma.charge       = -1.0;        % -1 for electron, +1 for positr
 input_struct.plasma.mass         = SI_eM/SI_eM; % Particle mass in units of electron mass
 
 % beam parameters
-input_struct.beam.charge         = +1.0;        % -1 for electron, +1 for positron
+input_struct.beam.charge         = -1.0;        % -1 for electron, +1 for positron
 input_struct.beam.mass           = SI_eM/SI_eM; % Particle mass in units of electron mass
 input_struct.beam.N_particles    = 2.0e10;      % Number of beam particles
 input_struct.beam.gamma          = 40000;       % relativistic factor gamma, if 0 energy specified below
@@ -98,4 +98,4 @@ if write
     WRITE_OS(osinput_template_file, osinput_output_file, os_struct);
     save([param_dir 'param_' osinput_output_name '.mat'], 'param_struct');
 end
-%exit;
+exit;

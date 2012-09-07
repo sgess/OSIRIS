@@ -1,0 +1,210 @@
+simulation
+{
+  n0 = 5.000d16
+}
+
+node_conf 
+{
+  node_number(1:2) = 8, 8,
+  if_periodic(1:2) = .false., .false.,
+}
+
+!----------spatial grid----------
+
+grid 
+{
+  nx_p(1:2)   = 320, 320,
+  coordinates = "cylindrical",
+}
+
+!----------time step and global data dump timestep number----------
+
+time_step 
+{
+  dt    = 0.016,
+  ndump = 2565,
+}
+
+!----------restart information----------
+
+restart 
+{
+  ndump_fac  = 0 
+  if_restart = .false.,
+  if_remold  = .false.,
+}
+
+!----------spatial limits of the simulations----------
+
+!(note that this includes information about
+
+! the motion of the simulation box)
+
+space 
+{
+  xmin(1:2) = 0, 0,
+  xmax(1:2) = 16, 16,
+  if_move   = .true., .false.,
+}
+
+!----------time limits ----------
+
+time 
+{
+  tmin = 0, tmax = 2052,
+}
+
+!----------field solver set up----------
+
+el_mag_fld 
+{
+}
+
+
+!----------boundary conditions for em-fields ----------
+
+emf_bound 
+{
+  type(1:2,1) = 1, 1, 
+  type(1:2,2) = 20, 5,
+}
+
+
+!----------diagnostic for electromagnetic fields---------- 
+diag_emf
+{
+  ndump_fac = 1,
+  reports   = "e1","e2","b3",
+}
+
+!----------number of particle species----------
+
+particles 
+{   
+  num_species = 2,
+}
+
+!----------information for species 1----------
+
+species 
+{
+  name           = 'beam',
+  num_par_max    = 2000000,
+  rqm            = -1,
+  num_par_x(1:2) = 4, 4
+  vth(1:3)       = 0, 0.83333, 0.83333,
+  vfl(1:3)       = 0, 0, 0,
+  
+  interpolation  = "quadratic"
+  
+  free_stream    = .false.,
+  den_min        = 1.000d-08,
+  dgam           = 100,
+  num_dgam       = 1000,
+  num_ddgam      = 600,
+}
+
+
+!----------Density profile for this species----------
+!  actual profile
+
+profile 
+{
+  profile_type(1:2)  = "gaussian", "gaussian",
+
+  gauss_center(1:2)  = 12.8, 0,
+  gauss_sigma(1:2)   = 0.58909, 2.5247
+  gauss_range(1:2,1) = 9.8545, 15.7455,
+  gauss_range(1:2,2) = 0, 12.6234,
+  density            = 0.50392,
+}
+
+!----------boundary conditions for this species----------
+
+spe_bound 
+{
+  type(1:2,1) = 1, 1,
+  type(1:2,2) = 20, 5,
+}
+
+diag_species
+{
+  ndump_fac         = 1,
+  reports           = "charge",
+
+  ndump_fac_pha     = 1,
+  ps_xmin(1:2)      = 0.0, 0.0,
+  ps_xmax(1:2)      = 16.0, 16.0,
+  ps_nx(1:2)        = 160, 160,
+
+  ps_pmin(1:2)      = 0.0, -2.5,
+  ps_pmax(1:2)      = 50000.0, 2.5,
+  ps_np(1:2)        = 500, 100,
+  if_ps_p_auto(1:2) = .false., .false.,
+
+  phasespaces       = "p1x1", "p1p2",
+
+}
+
+!----------information for species 2----------
+
+species 
+{
+  name           = 'plasma',
+  num_par_max    = 2000000,
+  rqm            = -1,
+  num_par_x(1:2) = 4, 4
+  vth(1:2)       = 0, 0,
+  vfl(1:2)       = 0, 0,
+  interpolation  = "quadratic"
+}
+
+profile
+{
+  num_x     = 6,
+
+  fx(1:6,1) = 0, 0, 1, 1, 1, 1,
+   x(1:6,1) = 0, 32, 35, 10260, 15390, 20520,
+  fx(1:6,2) = 1, 1, 1, 1, 0, 0,
+   x(1:6,2) = 0, 8, 12, 15.9, 15.95, 16,
+}
+
+
+!----------boundary conditions for this species----------
+
+spe_bound
+{
+  type(1:2,1) = 1, 1,
+  type(1:2,2) = 20, 5,
+}
+
+
+diag_species
+{
+  ndump_fac         = 1,
+  reports           = "charge",
+
+  ndump_fac_pha     = 0,
+  ps_xmin(1:2)      = 0.0, 0.0,
+  ps_xmax(1:2)      = 3600.0, 3.0,
+  ps_nx(1:2)        = 900, 30,
+
+  ps_pmin(1:2)      = -5.0, -5.0,
+  ps_pmax(1:2)      = 500.0, 5.0,
+  ps_np(1:2)        = 500, 10,
+  if_ps_p_auto(1:2) = .false., .false.,
+
+  phasespaces       = "p1x1",
+}
+
+smooth 
+{
+  ifsmooth(1)     = .true.,
+  smooth_level(1) = 5,
+  swfj(1:3,1,1)   = 1,2,1,
+  swfj(1:3,2,1)   = 1,2,1,
+  swfj(1:3,3,1)   = 1,2,1,
+  swfj(1:3,4,1)   = 1,2,1,
+  swfj(1:3,5,1)   = -5,14,-5,
+  ifsmooth(2)     = .false.,
+}
