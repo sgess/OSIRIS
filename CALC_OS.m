@@ -21,6 +21,7 @@ param_struct.plasma.k_p      = param_struct.plasma.omega_p/SI_c;                
 param_struct.plasma.SD       = 1e6*SI_c/param_struct.plasma.omega_p;                % plasma skin depth [um]
 param_struct.plasma.time     = 1/param_struct.plasma.omega_p;                       % characteristic time scale [s]
 param_struct.plasma.rqm      = param_struct.plasma.mass/param_struct.plasma.charge; % mass to charge ratio
+param_struct.plasma.field    = SI_em*SI_c*param_struct.plasma.omega_p/(1e9*SI_e);   % GV/m
 
 
 
