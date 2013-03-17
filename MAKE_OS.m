@@ -30,7 +30,7 @@ end
 osinput_output_name = 'test';
 osinput_output_file = [osinput_dir 'os-stdin_' osinput_output_name];
 
-write = 0;
+write = 1;
 % check to see if you want to overwrite file
 if exist(osinput_output_file,'file')
    reply = input(['File ' osinput_output_file ' exists. \n Do you want to overwrite? y/n '], 's');
@@ -44,18 +44,18 @@ end
 % INPUT TO OSINPUT (ASSUMING NO IONS, GAUSSIAN BEAMS, AND CYLINDRICAL COORDINATES)
 
 % simulation parameters
-% input_struct.sim.coordinates   = '"cylindrical"'; % Z,R is order of coordinates
-% input_struct.sim.N_species     = 2;               % Number of particle species
-% input_struct.sim.dt            = 0.016;           % Time step in 1/omega_p, must satisfy courant condition
-% input_struct.sim.prop          = 0.040;           % propagation length of the beam [cm]
-% input_struct.sim.gamma_steps   = 400;             % number of time steps for beam to accelerate during initialization
-% input_struct.sim.plasma_X_ramp = 0.05;            % transverse plasma ramp in skin depths (to avoid noise at boundary) 
-% input_struct.sim.plasma_Z_ramp = 3;               % longitudinal plasma ramp in skin depths (to avoid trapped charge) 
-% input_struct.sim.density_res   = 1e-8;            % resolution of beam and plasma density relative to n0 
-% input_struct.sim.nodeX         = 8;               % number of "transverse nodes"
-% input_struct.sim.nodeZ         = 4;               % number of "longitudinal nodes" 
-% input_struct.sim.n_dumps       = 50;              % number of data dumps per run 
-% input_struct.sim.free_stream   = '.false.';       % false : beam evolves, true : free stream, no evolution
+input_struct.sim.coordinates   = '"cylindrical"'; % Z,R is order of coordinates
+input_struct.sim.N_species     = 2;               % Number of particle species
+input_struct.sim.dt            = 0.016;           % Time step in 1/omega_p, must satisfy courant condition
+input_struct.sim.prop          = 0.040;           % propagation length of the beam [cm]
+input_struct.sim.gamma_steps   = 400;             % number of time steps for beam to accelerate during initialization
+input_struct.sim.plasma_X_ramp = 0.05;            % transverse plasma ramp in skin depths (to avoid noise at boundary) 
+input_struct.sim.plasma_Z_ramp = 3;               % longitudinal plasma ramp in skin depths (to avoid trapped charge) 
+input_struct.sim.density_res   = 1e-8;            % resolution of beam and plasma density relative to n0 
+input_struct.sim.nodeX         = 8;               % number of "transverse nodes"
+input_struct.sim.nodeZ         = 4;               % number of "longitudinal nodes" 
+input_struct.sim.n_dumps       = 50;              % number of data dumps per run 
+input_struct.sim.free_stream   = '.false.';       % false : beam evolves, true : free stream, no evolution
 
 % simulation parameters
 input_struct.sim.BEAM_EV       = 1;           % 0 : calc wake only, 1 : propagate and evolve beam
@@ -104,8 +104,8 @@ os_struct = FORM_OS(param_struct);
 if write
     WRITE_OS(osinput_template_file, osinput_output_file, os_struct);
     save([param_dir 'param_' osinput_output_name '.mat'], 'param_struct');
-    run_dir = WRITE_CMD(command_dir, rpinput_output_name, param_struct.comp.mem,...
-        param_struct.comp.tasks, param_struct.comp.run_time);
+    %run_dir = WRITE_CMD(command_dir, osinput_output_name, param_struct.comp.mem,...
+    %    param_struct.comp.tasks, param_struct.comp.run_time);
 end
 
 %exit;
