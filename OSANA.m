@@ -5,9 +5,8 @@ clear all;
 
 data_dir = '/Users/sgess/Desktop/FACET/os_tars/';
 plot_dir = '/Users/sgess/Desktop/FACET/OS_PLOTS/';
-date_dir = '2012/Sep/07/';
-set_dir  = 'OS_pShort2/';
-plot_dir = '/Users/sgess/Desktop/FACET/OS_PLOTS/';
+date_dir = '2013/Mar/16/';
+set_dir  = 'ostest2/';
 
 data_loc = [data_dir date_dir set_dir];
 plot_loc = [plot_dir date_dir set_dir];
@@ -15,7 +14,9 @@ if(~exist(plot_loc,'dir'))
     mkdir(plot_loc);
 end
 
-file_number = 3128;
+%for i = 1:50;
+
+file_number = 50;
 num_str = num2str(file_number,'%06d');
 
 bp_file = ['MS/DENSITY/beam/charge/charge-beam-' num_str '.h5'];
@@ -42,23 +43,25 @@ field_b3 = LOAD_DATA([data_loc b3_file],b3_type);
 RR = linspace(r_axis(1),r_axis(2),length(beam_rho));
 ZZ = linspace(z_axis(1),z_axis(2),length(beam_rho)) - z_axis(1);
 
-% figure;
-% imagesc(ZZ,RR,abs(log(flipdim(plas_rho',1))));
-% colorbar;
-% xlabel('c/\omega_p','fontsize',16);
-% ylabel('c/\omega_p','fontsize',16);
-% t = colorbar('peer',gca);
-% set(get(t,'ylabel'),'String', 'n_0','fontsize',16);
-% title('Log of Plasma Density','fontsize',16);
-% 
-% figure;
-% imagesc(ZZ,RR,abs(log(flipdim(beam_rho',1))));
-% colorbar;
-% xlabel('c/\omega_p','fontsize',16);
-% ylabel('c/\omega_p','fontsize',16);
-% t = colorbar('peer',gca);
-% set(get(t,'ylabel'),'String', 'n_0','fontsize',16);
-% title('Log of Beam Density','fontsize',16);
+figure(1);
+%imagesc(ZZ,RR,abs(log(flipdim(plas_rho',1))));
+imagesc(ZZ,RR,flipdim(plas_rho',1));
+colorbar;
+xlabel('c/\omega_p','fontsize',16);
+ylabel('c/\omega_p','fontsize',16);
+t = colorbar('peer',gca);
+set(get(t,'ylabel'),'String', 'n_0','fontsize',16);
+title('Plasma Density','fontsize',16);
+
+figure(2);
+%imagesc(ZZ,RR,abs(log(flipdim(beam_rho',1))));
+imagesc(ZZ,RR,flipdim(beam_rho',1));
+colorbar;
+xlabel('c/\omega_p','fontsize',16);
+ylabel('c/\omega_p','fontsize',16);
+t = colorbar('peer',gca);
+set(get(t,'ylabel'),'String', 'n_0','fontsize',16);
+title('Beam Density','fontsize',16);
 
 % figure;
 % imagesc(ZZ,RR(122)-RR(2:122),flipdim(plas_rho(:,2:122)',1));
@@ -106,4 +109,6 @@ ZZ = linspace(z_axis(1),z_axis(2),length(beam_rho)) - z_axis(1);
 % v =  axis;
 % text(2*v(2)/3,4*v(3)/5,'Beam Direction \rightarrow','FontSize',16,'FontWeight','bold');
 % %saveas(gca,[plot_dir date_dir set_dir 'EZ_1D.pdf']);
-save('../COMPARE/OS_pShort2.mat','ZZ','field_e1');
+% save('../COMPARE/OS_pShort2.mat','ZZ','field_e1');
+
+%end

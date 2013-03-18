@@ -27,7 +27,7 @@ if ~exist(command_dir,'dir')
     mkdir(command_dir);
 end
 
-osinput_output_name = 'test';
+osinput_output_name = 'testFS';
 osinput_output_file = [osinput_dir 'os-stdin_' osinput_output_name];
 
 write = 1;
@@ -55,7 +55,7 @@ input_struct.sim.density_res   = 1e-8;            % resolution of beam and plasm
 input_struct.sim.nodeX         = 8;               % number of "transverse nodes"
 input_struct.sim.nodeZ         = 4;               % number of "longitudinal nodes" 
 input_struct.sim.n_dumps       = 50;              % number of data dumps per run 
-input_struct.sim.free_stream   = '.false.';       % false : beam evolves, true : free stream, no evolution
+input_struct.sim.free_stream   = '.true.';       % false : beam evolves, true : free stream, no evolution
 
 % simulation parameters
 input_struct.sim.BEAM_EV       = 1;           % 0 : calc wake only, 1 : propagate and evolve beam
