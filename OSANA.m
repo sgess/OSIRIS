@@ -5,8 +5,8 @@ clear all;
 
 data_dir = '/Users/sgess/Desktop/FACET/os_tars/';
 plot_dir = '/Users/sgess/Desktop/FACET/OS_PLOTS/';
-date_dir = '2013/Mar/16/';
-set_dir  = 'ostest2/';
+date_dir = '2013/Mar/18/';
+set_dir  = 'testFS2/';
 
 data_loc = [data_dir date_dir set_dir];
 plot_loc = [plot_dir date_dir set_dir];
@@ -14,9 +14,9 @@ if(~exist(plot_loc,'dir'))
     mkdir(plot_loc);
 end
 
-%for i = 1:50;
+for i = 0:50;
 
-file_number = 50;
+file_number = i;
 num_str = num2str(file_number,'%06d');
 
 bp_file = ['MS/DENSITY/beam/charge/charge-beam-' num_str '.h5'];
@@ -111,4 +111,4 @@ title('Beam Density','fontsize',16);
 % %saveas(gca,[plot_dir date_dir set_dir 'EZ_1D.pdf']);
 % save('../COMPARE/OS_pShort2.mat','ZZ','field_e1');
 
-%end
+end
