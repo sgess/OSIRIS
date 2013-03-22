@@ -182,14 +182,14 @@ param_struct.pos.beam_X_real = param_struct.pos.beam_X_norm*param_struct.plasma.
 % Calculate Gaussian range
 if param_struct.pos.beam_X_norm+input_struct.beam.N_sigma_x*...
         param_struct.beam.kpsx > param_struct.size.Box_X-0.1
-    error('Beam larger than box! Try a smaller N_sigma value');
+    error('Beam larger than box! Try a smaller N_sigma_x value');
 else
     param_struct.pos.beam_X_range = input_struct.beam.N_sigma_x*param_struct.beam.kpsx; % Beam range [skin depths]
 end
 
 if param_struct.pos.beam_Z_norm+input_struct.beam.N_sigma_z*param_struct.beam.kpsz > param_struct.size.Box_Z-0.1 ||...
         param_struct.pos.beam_Z_norm-input_struct.beam.N_sigma_z*param_struct.beam.kpsz < 0.1        
-    error('Beam larger than box! Try a smaller N_sigma value');
+    error('Beam larger than box! Try a smaller N_sigma_z value');
 else
     param_struct.pos.beam_Z_range = input_struct.beam.N_sigma_z*param_struct.beam.kpsz; % Beam range [skin depths]
 end

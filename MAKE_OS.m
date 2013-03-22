@@ -53,16 +53,16 @@ input_struct.sim.plasma_X_ramp = 0.05;            % transverse plasma ramp in sk
 input_struct.sim.plasma_Z_ramp = 3;               % longitudinal plasma ramp in skin depths (to avoid trapped charge) 
 input_struct.sim.density_res   = 1e-8;            % resolution of beam and plasma density relative to n0 
 input_struct.sim.nodeX         = 8;               % number of "transverse nodes"
-input_struct.sim.nodeZ         = 8;               % number of "longitudinal nodes" 
+input_struct.sim.nodeZ         = 4;               % number of "longitudinal nodes" 
 input_struct.sim.n_dumps       = 50;              % number of data dumps per run 
 input_struct.sim.free_stream   = '.true.';       % false : beam evolves, true : free stream, no evolution
 
 % simulation parameters
-%input_struct.sim.BEAM_EV       = 1;           % 0 : calc wake only, 1 : propagate and evolve beam
-%input_struct.sim.prop          = 0.000768;    % propagation length of the beam [m]
-%input_struct.sim.DT            = 16.0;        % Delta T between beam pushes [1/omega_p]. If 0: use calc from formula
-%input_struct.sim.dump_freq     = 1;           % Dump frequency
-%input_struct.sim.run_time      = 1;           % Amount of computer time to run sim for, 1 if BEAM_EV = 0
+input_struct.sim.BEAM_EV       = 1;           % 0 : calc wake only, 1 : propagate and evolve beam
+input_struct.sim.prop          = 0.000768;    % propagation length of the beam [m]
+input_struct.sim.DT            = 16.0;        % Delta T between beam pushes [1/omega_p]. If 0: use calc from formula
+input_struct.sim.dump_freq     = 1;           % Dump frequency
+input_struct.sim.run_time      = 1;           % Amount of computer time to run sim for, 1 if BEAM_EV = 0
 
 % plasma parameters
 input_struct.plasma.density    = 5e16;            % /cm^3
@@ -89,8 +89,8 @@ input_struct.beam.z_match      = 0;               % 1: override sigma_z with sqr
 
 % size parameters
 input_struct.size.cell         = 0.05;            % cell size as a fraction of the skin depth
-input_struct.size.Z_waves      = 2.;              % set box length by number of plasma wavelengths
-input_struct.size.X_bunches    = 6;               % set box length by number of beam radii
+input_struct.size.Z_waves      = 4.;              % set box length by number of plasma wavelengths
+input_struct.size.X_bunches    = 8;               % set box length by number of beam radii
 input_struct.size.Z_center     = 0.8;             % Z center of beam measured from end of box
 input_struct.size.X_center     = 0;               % R center of beam measured from longitudinal axis
 
