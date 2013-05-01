@@ -3,10 +3,14 @@
 
 clear all;
 
-data_dir = '/Users/sgess/Desktop/FACET/os_tars/';
-plot_dir = '/Users/sgess/Desktop/FACET/OS_PLOTS/';
-date_dir = '2013/Mar/18/';
-set_dir  = 'testFS2/';
+%data_dir = '/Users/sgess/Desktop/FACET/os_tars/';
+%plot_dir = '/Users/sgess/Desktop/FACET/OS_PLOTS/';
+
+data_dir = '/Users/sgess/Desktop/data/os_tars/';
+plot_dir = '/Users/sgess/Desktop/plots/OS/';
+
+date_dir = '2013/Mar/29/';
+set_dir  = 'hollow2/';
 
 data_loc = [data_dir date_dir set_dir];
 plot_loc = [plot_dir date_dir set_dir];
@@ -14,7 +18,7 @@ if(~exist(plot_loc,'dir'))
     mkdir(plot_loc);
 end
 
-for i = 0:50;
+for i = 0:1;
 
 file_number = i;
 num_str = num2str(file_number,'%06d');
@@ -89,7 +93,12 @@ title('Beam Density','fontsize',16);
 % text(3*v(2)/5,5*v(4)/6,'Beam Direction \rightarrow','FontSize',16,'FontWeight','bold');
 % %saveas(gca,[plot_dir date_dir set_dir 'beam_rho.pdf']);
 % 
-% figure;
+  figure(3);
+  imagesc(ZZ,RR,flipdim(field_e1',2));
+  colorbar;
+  
+  figure(4);
+  plot(ZZ,field_e1(:,1));
 % imagesc(ZZ,RR(122)-RR(2:122),flipdim(field_e1(:,2:122)',1));
 % colorbar;
 % xlabel('c/\omega_p','fontsize',16);
