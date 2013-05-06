@@ -208,3 +208,4 @@ smooth
   swfj(1:3,5,1)   = -5,14,-5,
   ifsmooth(2)     = .false.,
 }
+
