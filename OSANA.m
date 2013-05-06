@@ -5,8 +5,11 @@ clear all;
 
 savE = 0;
 
-data_dir = '/Users/sgess/Desktop/FACET/os_tars/';
-plot_dir = '/Users/sgess/Desktop/FACET/OS_PLOTS/';
+%data_dir = '/Users/sgess/Desktop/FACET/os_tars/';
+%plot_dir = '/Users/sgess/Desktop/FACET/OS_PLOTS/';
+
+data_dir = '/Users/sgess/Desktop/data/os_tars/';
+plot_dir = '/Users/sgess/Desktop/plots/OS/';
 
 %data_dir = '/Users/sgess/Desktop/data/os_tars/';
 %plot_dir = '/Users/sgess/Desktop/plots/OS/';
@@ -15,7 +18,8 @@ plot_dir = '/Users/sgess/Desktop/FACET/OS_PLOTS/';
 %date_dir = '2013/Mar/29/';
 %date_dir = '2013/May/01/';
 %date_dir = '2013/May/02/';
-date_dir = '2013/May/03/';
+%date_dir = '2013/May/03/';
+date_dir = '2013/May/06/';
 
 %set_dir = 'OS_eShort2/';
 %set_dir  = 'hollow2/';
@@ -30,7 +34,8 @@ date_dir = '2013/May/03/';
 %set_dir  = 'long_test3/';
 %set_dir = 'long_testE/';
 %set_dir = 'e_d2/';
-set_dir = 'e_t1/';
+%set_dir = 'e_t1/';
+set_dir = 'p_t1/';
 
 
 n0 = 1e16;
@@ -95,7 +100,7 @@ RAXIS = linspace(rr(1),rr(2),size(beam_rho,2));
 ZAXIS = fliplr(linspace(zz(1),zz(2),size(beam_rho,1))-zz(1));
 
 ions = -repmat(plas_rho(plas_length,:),plas_length,1);
-charge = flipdim(beam_rho'+plas_rho'+ions',1);
+%charge = flipdim(beam_rho'+plas_rho'+ions',1);
 charge = beam_rho'+plas_rho'+ions';
 
 zero_frac = -min(min(charge))/(max(max(charge))-min(min(charge)));
@@ -145,7 +150,7 @@ imagesc(ZAXIS,RAXIS,charge);
 axis xy;
 axis image;
 colormap(cmap);
-caxis([-2 2]);
+caxis([-1 1]);
 colorbar;
 xlabel('\mum','fontsize',16);
 ylabel('\mum','fontsize',16);
