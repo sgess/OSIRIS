@@ -3,7 +3,7 @@
 
 clear all;
 
-savE = 0;
+savE = 1;
 
 %data_dir = '/Users/sgess/Desktop/FACET/os_tars/';
 %plot_dir = '/Users/sgess/Desktop/FACET/OS_PLOTS/';
@@ -34,8 +34,9 @@ date_dir = '2013/May/06/';
 %set_dir  = 'long_test3/';
 %set_dir = 'long_testE/';
 %set_dir = 'e_d2/';
+set_dir = 'p_r1/';
 %set_dir = 'e_t1/';
-set_dir = 'p_t1/';
+%set_dir = 'p_t1/';
 
 
 n0 = 1e16;

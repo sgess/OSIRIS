@@ -46,7 +46,7 @@ end
 % simulation parameters
 input_struct.sim.N_species     = 2;               % Number of particle species
 input_struct.sim.dt            = 0.016;           % Time step in 1/omega_p, must satisfy courant condition
-input_struct.sim.prop          = 0.040;           % propagation length of the beam [cm]
+input_struct.sim.prop          = 0.0053;           % propagation length of the beam [cm]
 input_struct.sim.gamma_steps   = 400;             % number of time steps for beam to accelerate during initialization
 input_struct.sim.plasma_R_ramp = 0.05;            % transverse plasma ramp in skin depths (to avoid noise at boundary) 
 input_struct.sim.plasma_Z_ramp = 3;               % longitudinal plasma ramp in skin depths (to avoid trapped charge) 
@@ -55,13 +55,6 @@ input_struct.sim.nodeR         = 4;               % number of "transverse nodes"
 input_struct.sim.nodeZ         = 16;               % number of "longitudinal nodes" 
 input_struct.sim.n_dumps       = 7;              % number of data dumps per run 
 input_struct.sim.free_stream   = '.true.';       % false : beam evolves, true : free stream, no evolution
-
-% simulation parameters
-input_struct.sim.BEAM_EV       = 1;           % 0 : calc wake only, 1 : propagate and evolve beam
-input_struct.sim.prop          = 0.000768;    % propagation length of the beam [m]
-input_struct.sim.DT            = 16.0;        % Delta T between beam pushes [1/omega_p]. If 0: use calc from formula
-input_struct.sim.dump_freq     = 1;           % Dump frequency
-input_struct.sim.run_time      = 1;           % Amount of computer time to run sim for, 1 if BEAM_EV = 0
 
 % plasma parameters
 input_struct.plasma.density    = 1e16;            % /cm^3
@@ -77,7 +70,7 @@ input_struct.hollow.n_points   = 6;               % number of points in profile
 input_struct.hollow.type       = 'flat';          % profile type
 
 % beam parameters
-input_struct.beam.charge       = +1.0;            % -1 for electron, +1 for positron
+input_struct.beam.charge       = -1.0;            % -1 for electron, +1 for positron
 input_struct.beam.mass         = SI_eM/SI_eM;     % Particle mass in units of electron mass
 input_struct.beam.N_particles  = 2.0e10;          % Number of beam particles
 input_struct.beam.gamma        = 40000;           % relativistic factor gamma, if 0 energy specified below
