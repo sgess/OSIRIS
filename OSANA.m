@@ -5,11 +5,11 @@ clear all;
 
 savE = 1;
 
-%data_dir = '/Users/sgess/Desktop/FACET/os_tars/';
-%plot_dir = '/Users/sgess/Desktop/FACET/OS_PLOTS/';
+data_dir = '/Users/sgess/Desktop/FACET/os_tars/';
+plot_dir = '/Users/sgess/Desktop/FACET/OS_PLOTS/';
 
-data_dir = '/Users/sgess/Desktop/data/os_tars/';
-plot_dir = '/Users/sgess/Desktop/plots/OS/';
+%data_dir = '/Users/sgess/Desktop/data/os_tars/';
+%plot_dir = '/Users/sgess/Desktop/plots/OS/';
 
 %data_dir = '/Users/sgess/Desktop/data/os_tars/';
 %plot_dir = '/Users/sgess/Desktop/plots/OS/';
@@ -20,6 +20,7 @@ plot_dir = '/Users/sgess/Desktop/plots/OS/';
 %date_dir = '2013/May/02/';
 %date_dir = '2013/May/03/';
 date_dir = '2013/May/06/';
+%date_dir = '2013/Sep/04/';
 
 %set_dir = 'OS_eShort2/';
 %set_dir  = 'hollow2/';
@@ -34,12 +35,16 @@ date_dir = '2013/May/06/';
 %set_dir  = 'long_test3/';
 %set_dir = 'long_testE/';
 %set_dir = 'e_d2/';
-set_dir = 'p_r1/';
+%set_dir = 'p_r1/';
 %set_dir = 'e_t1/';
 %set_dir = 'p_t1/';
+%set_dir = 'e_r3/';
+set_dir = 'p_r3/';
+%set_dir = 'e_r3_17/';
+%set_dir = 'e_r3_18/';
 
 
-n0 = 1e16;
+n0 = 1e17;
 [omega_p, lambda_p, skin_depth, plasma_time, plasma_period, E0] = plasma_parameters(n0);
 
 data_loc = [data_dir date_dir set_dir];
@@ -115,7 +120,8 @@ zero_frac = -min(min(charge))/(max(max(charge))-min(min(charge)));
 
 figure(1);
 %imagesc(ZZ,RR,abs(log(flipdim(plas_rho',1))));
-imagesc(ZAXIS,RAXIS,flipdim(plas_rho',1));
+imagesc(ZAXIS,RAXIS,plas_rho');
+axis xy;
 axis image;
 colormap(cmap);
 caxis([-1 1]);
@@ -132,7 +138,8 @@ if savE; saveas(gca,[plot_loc 'plasma_rho.png']); end;
 
 figure(2);
 %imagesc(ZZ,RR,abs(log(flipdim(beam_rho',1))));
-imagesc(ZAXIS,RAXIS,flipdim(beam_rho',1));
+imagesc(ZAXIS,RAXIS,beam_rho');
+axis xy;
 axis image;
 colormap(cmap);
 caxis([-1 1]);
@@ -189,13 +196,13 @@ if savE; saveas(gca,[plot_loc 'charge_rho.png']); end;
 % %saveas(gca,[plot_dir date_dir set_dir 'beam_rho.pdf']);
 % 
   figure(4);
-  imagesc(ZAXIS,RAXIS,flipdim(field_e1',1));
+  imagesc(ZAXIS,RAXIS,field_e1');
+  axis xy;
   axis image;
   xlabel('\mum','fontsize',16);
   ylabel('\mum','fontsize',16);
   colormap(cmap);
-  caxis([-0.2 0.2]);
-  %caxis([-0.03 0.03]);
+  caxis([-.5 .5]);
   colorbar;
   t = colorbar('peer',gca);
   set(get(t,'ylabel'),'String', 'E_z (GeV)','fontsize',16);
@@ -214,6 +221,21 @@ if savE; saveas(gca,[plot_loc 'charge_rho.png']); end;
   Y = abs(y(1:length(y)/2));
   [max_Y,max_ind] = max(Y)
   semilogy(Y);
+  
+  figure(7);
+  imagesc(ZAXIS,RAXIS,-(field_e2'-field_b3'));
+  axis xy;
+  axis image;
+  xlabel('\mum','fontsize',16);
+  ylabel('\mum','fontsize',16);
+  colormap(cmap);
+  caxis([-0.15 0.15]);
+  colorbar;
+  t = colorbar('peer',gca);
+  set(get(t,'ylabel'),'String', 'E_r - B_{\theta} (MT/m)','fontsize',16);
+  title('Focusing Field (for Positrons)','fontsize',16);
+  if savE; saveas(gca,[plot_loc 'ER.png']); end;
+
   
 % imagesc(ZZ,RR(122)-RR(2:122),flipdim(field_e1(:,2:122)',1));
 % colorbar;
