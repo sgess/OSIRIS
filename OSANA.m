@@ -3,7 +3,7 @@
 
 clear all;
 
-savE = 1;
+savE = 0;
 
 data_dir = '/Users/sgess/Desktop/FACET/os_tars/';
 plot_dir = '/Users/sgess/Desktop/FACET/OS_PLOTS/';
@@ -19,8 +19,9 @@ plot_dir = '/Users/sgess/Desktop/FACET/OS_PLOTS/';
 %date_dir = '2013/May/01/';
 %date_dir = '2013/May/02/';
 %date_dir = '2013/May/03/';
-date_dir = '2013/May/06/';
+%date_dir = '2013/May/06/';
 %date_dir = '2013/Sep/04/';
+date_dir = '2013/now/';
 
 %set_dir = 'OS_eShort2/';
 %set_dir  = 'hollow2/';
@@ -39,9 +40,10 @@ date_dir = '2013/May/06/';
 %set_dir = 'e_t1/';
 %set_dir = 'p_t1/';
 %set_dir = 'e_r3/';
-set_dir = 'p_r3/';
+%set_dir = 'p_r3/';
 %set_dir = 'e_r3_17/';
 %set_dir = 'e_r3_18/';
+set_dir = 'wtest5/';
 
 
 n0 = 1e17;
