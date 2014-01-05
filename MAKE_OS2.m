@@ -27,7 +27,7 @@ if ~exist(command_dir,'dir')
     mkdir(command_dir);
 end
 
-osinput_output_name = 'moretest';
+osinput_output_name = 'newtest';
 osinput_output_file = [osinput_dir 'os-stdin_' osinput_output_name];
 
 write = 1;
@@ -46,14 +46,14 @@ end
 % simulation parameters
 input_struct.sim.N_species     = 2;               % Number of particle species
 input_struct.sim.dt            = 0.016;           % Time step in 1/omega_p, must satisfy courant condition
-input_struct.sim.prop          = 0.0053;           % propagation length of the beam [cm]
+input_struct.sim.prop          = 1.000;           % propagation length of the beam [cm]
 input_struct.sim.gamma_steps   = 400;             % number of time steps for beam to accelerate during initialization
 input_struct.sim.plasma_R_ramp = 0.05;            % transverse plasma ramp in skin depths (to avoid noise at boundary) 
 input_struct.sim.plasma_Z_ramp = 3;               % longitudinal plasma ramp in skin depths (to avoid trapped charge) 
 input_struct.sim.density_res   = 1e-8;            % resolution of beam and plasma density relative to n0 
 input_struct.sim.nodeR         = 4;               % number of "transverse nodes"
 input_struct.sim.nodeZ         = 16;               % number of "longitudinal nodes" 
-input_struct.sim.n_dumps       = 7;              % number of data dumps per run 
+input_struct.sim.n_dumps       = 5;              % number of data dumps per run 
 input_struct.sim.free_stream   = '.true.';       % false : beam evolves, true : free stream, no evolution
 
 % plasma parameters

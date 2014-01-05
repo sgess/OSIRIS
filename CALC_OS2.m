@@ -105,13 +105,14 @@ end
 % Calculate length of simulation in skin depth units
 param_struct.time.L_real  = input_struct.sim.prop*1e4;                               % Propagation length in plasma [um]
 param_struct.time.L_norm  = param_struct.time.L_real/param_struct.plasma.SD;         % Propagation length in plasma [skin depths]
-param_struct.time.L_time  = ceil(param_struct.time.L_norm/param_struct.time.d_norm); % Propagation time in plasma [1/omega_p]
+%param_struct.time.L_time  = ceil(param_struct.time.L_norm/param_struct.time.d_norm); % Propagation time in plasma [1/omega_p]
 
 % Calculate total simulation time including beam initialization
-param_struct.time.d_gam_norm  = input_struct.sim.gamma_steps;                           % Number of steps to accelerate beam [1/omega_p]
+param_struct.time.d_gam_norm  = input_struct.sim.gamma_steps;                           % Number of steps to accelerate beam
 param_struct.time.d_gamma     = param_struct.beam.gamma/param_struct.time.d_gam_norm;   % Acceleration in gamma per step
-param_struct.time.num_dgam    = ceil(param_struct.size.Box_Z/param_struct.time.d_norm); % Number of time steps before plasma [1/omega_p]
-param_struct.time.L_tot       = param_struct.time.num_dgam+param_struct.time.L_time;    % Total time of simulation [1/omega_p]
+param_struct.time.num_dgam    = ceil(param_struct.size.Box_Z/param_struct.time.d_norm); % Number of time steps before plasma
+param_struct.time.num_ddgam   = param_struct.time.num_dgam - param_struct.time.d_gam_norm; % Number of non-accelerating steps
+param_struct.time.L_tot       = param_struct.size.Box_Z+param_struct.time.L_norm;    % Total time of simulation [1/omega_p]
 
 
 

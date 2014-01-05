@@ -32,7 +32,7 @@ os_struct.species(1).free_stream = [param_struct.sim.free_stream eol];
 os_struct.species(1).den_min = [strrep(num2str(param_struct.sim.den_min,'%0.3E'),'E','d') eol];
 os_struct.species(1).dgam = [num2str(param_struct.time.d_gamma) eol];
 os_struct.species(1).num_dgam = [num2str(param_struct.time.num_dgam) eol];
-os_struct.species(1).num_ddgam = [num2str(param_struct.time.num_dgam-param_struct.time.d_gam_norm) eol];
+os_struct.species(1).num_ddgam = [num2str(param_struct.time.num_ddgam) eol];
 
 os_struct.profile(1).profile_type = '"gaussian", "gaussian",\n';
 os_struct.profile(1).gauss_center = [num2str(param_struct.pos.beam_Z) sep num2str(param_struct.pos.beam_R) eol];

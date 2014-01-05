@@ -3,16 +3,13 @@
 
 clear all;
 
-savE = 0;
+savE = 1;
 
-data_dir = '/Users/sgess/Desktop/FACET/os_tars/';
-plot_dir = '/Users/sgess/Desktop/FACET/OS_PLOTS/';
+%data_dir = '/Users/sgess/Desktop/FACET/os_tars/';
+%plot_dir = '/Users/sgess/Desktop/FACET/OS_PLOTS/';
 
-%data_dir = '/Users/sgess/Desktop/data/os_tars/';
-%plot_dir = '/Users/sgess/Desktop/plots/OS/';
-
-%data_dir = '/Users/sgess/Desktop/data/os_tars/';
-%plot_dir = '/Users/sgess/Desktop/plots/OS/';
+data_dir = '/Users/sgess/Desktop/data/os_tars/';
+plot_dir = '/Users/sgess/Desktop/plots/OS/';
 
 %date_dir = '2012/Sep/07/';
 %date_dir = '2013/Mar/29/';
@@ -43,14 +40,18 @@ date_dir = '2013/now/';
 %set_dir = 'p_r3/';
 %set_dir = 'e_r3_17/';
 %set_dir = 'e_r3_18/';
-set_dir = 'wtest5/';
-
+%set_dir = 'wtest/'; plot_name = 'sd_01';   % 0.1 sd
+%set_dir = 'wtest2/'; plot_name = 'holl';  % hollow channel
+%set_dir = 'wtest3/'; plot_name = 'sd_10';  % 1.0 sd
+%set_dir = 'wtest4/'; plot_name = 'sd_05';  % 0.5 sd
+set_dir = 'wtest5/'; plot_name = 'full';  % plasma everywhere
 
 n0 = 1e17;
 [omega_p, lambda_p, skin_depth, plasma_time, plasma_period, E0] = plasma_parameters(n0);
 
 data_loc = [data_dir date_dir set_dir];
 plot_loc = [plot_dir date_dir set_dir];
+ext = '.eps'; ext_type = 'epsc';
 if(~exist(plot_loc,'dir'))
     mkdir(plot_loc);
 end
@@ -135,7 +136,7 @@ ylabel('\mum','fontsize',16);
 t = colorbar('peer',gca);
 set(get(t,'ylabel'),'String', ['n_0 [' num2str(n0,'%1.1e') ']' ],'fontsize',16);
 title('Plasma Density','fontsize',16);
-if savE; saveas(gca,[plot_loc 'plasma_rho.png']); end;
+if savE; saveas(gca,[plot_loc plot_name '_plasma_rho' ext],ext_type); end;
 
 
 figure(2);
@@ -153,7 +154,7 @@ ylabel('\mum','fontsize',16);
 t = colorbar('peer',gca);
 set(get(t,'ylabel'),'String', ['n_0 [' num2str(n0,'%1.1e') ']' ],'fontsize',16);
 title('Beam Density','fontsize',16);
-if savE; saveas(gca,[plot_loc 'beam_rho.png']); end;
+if savE; saveas(gca,[plot_loc plot_name '_beam_rho' ext],ext_type); end;
 
 figure(3);
 imagesc(ZAXIS,RAXIS,charge);
@@ -169,7 +170,7 @@ ylabel('\mum','fontsize',16);
 t = colorbar('peer',gca);
 set(get(t,'ylabel'),'String', ['n_0 [' num2str(n0,'%1.1e') ']' ],'fontsize',16);
 title('Charge Density','fontsize',16);
-if savE; saveas(gca,[plot_loc 'charge_rho.png']); end;
+if savE; saveas(gca,[plot_loc plot_name '_charge_rho' ext],ext_type); end;
 
 % figure;
 % imagesc(ZZ,RR(122)-RR(2:122),flipdim(plas_rho(:,2:122)',1));
@@ -197,6 +198,9 @@ if savE; saveas(gca,[plot_loc 'charge_rho.png']); end;
 % text(3*v(2)/5,5*v(4)/6,'Beam Direction \rightarrow','FontSize',16,'FontWeight','bold');
 % %saveas(gca,[plot_dir date_dir set_dir 'beam_rho.pdf']);
 % 
+
+  emax = max(abs(field_e1(:,1)));
+  
   figure(4);
   imagesc(ZAXIS,RAXIS,field_e1');
   axis xy;
@@ -204,39 +208,67 @@ if savE; saveas(gca,[plot_loc 'charge_rho.png']); end;
   xlabel('\mum','fontsize',16);
   ylabel('\mum','fontsize',16);
   colormap(cmap);
-  caxis([-.5 .5]);
+  caxis([-emax emax]);
   colorbar;
   t = colorbar('peer',gca);
-  set(get(t,'ylabel'),'String', 'E_z (GeV)','fontsize',16);
+  set(get(t,'ylabel'),'String', 'E_z (GV/m)','fontsize',16);
   title('Longitudinal Field','fontsize',16);
-  if savE; saveas(gca,[plot_loc 'EZ.png']); end;
+  if savE; saveas(gca,[plot_loc plot_name '_EZ' ext],ext_type); end;
 
   figure(5);
   plot(ZAXIS,field_e1(:,1));
   xlabel('\mum','fontsize',16);
-  ylabel('E_z (GeV)','fontsize',16);
-  title('On Axis Longitudinal Field');
-  if savE; saveas(gca,[plot_loc 'EZ_axis.png']); end;
+  ylabel('E_z (GV/m)','fontsize',16);
+  title('On Axis Longitudinal Field','fontsize',16);
+  nz = length(field_e1(:,1));
+  dont_count = zeros(nz,1);
+  dont_count(1:(nz-100)) = 1;
+  [a,b] = max(dont_count.*field_e1(:,1));
+  a = double(a);
+  hold on;
+  plot(ZAXIS(b),a,'r*');
+  hold off;
+  text(ZAXIS(b),a,[' E_{max} = ' num2str(a,'%0.2f') ' GV/m']);
+  if savE; saveas(gca,[plot_loc plot_name '_EZ_axis' ext],ext_type); end;
 
+  
+  % calculate fft
   figure(6);
-  y = fft(field_e1(:,1),512);
-  Y = abs(y(1:length(y)/2));
-  [max_Y,max_ind] = max(Y)
-  semilogy(Y);
+  npow = nextpow2(nz);        % next power of 2
+  nfft = 2^npow;
+  y = fft(field_e1(:,1),nfft)/nz; % fft has units of 1/(# of cells)
+  dz = (ZAXIS(1)-ZAXIS(2))*1e-6; % intercell spacing in m
+  Fs = 1/dz;                     % wavenumber spacing in 1/m
+  f = Fs*linspace(0,1,nfft/2+1)/2; % only plot below nyquist freq (factor of 2)
+  realY = 2*abs(y(1:(nfft/2+1))); % plot real part of FFT
+  semilogy(f,realY);
+  [a,b] = max(realY);
+  hold on;
+  semilogy(f(b),realY(b),'r*');
+  hold off;
+  xlabel('Reduced Wavenumber (k/2 \pi) [m^{-1}]','fontsize',16);
+  title('Fourier transform of on axis E_z field','fontsize',16);
+  text_str = [' \lambda = ' num2str(1e6/f(b),'%0.2f') ' \mum'];
+  xpos = f(b);
+  ypos = double(realY(b));
+  text(xpos,ypos,text_str);
+  if savE; saveas(gca,[plot_loc plot_name '_FFT' ext],ext_type); end;
   
   figure(7);
-  imagesc(ZAXIS,RAXIS,-(field_e2'-field_b3'));
+  bfield = -(field_e2'-field_b3');
+  bmax = max(abs(bfield(:)));
+  imagesc(ZAXIS,RAXIS,bfield);
   axis xy;
   axis image;
   xlabel('\mum','fontsize',16);
   ylabel('\mum','fontsize',16);
   colormap(cmap);
-  caxis([-0.15 0.15]);
+  caxis([-bmax bmax]);
   colorbar;
   t = colorbar('peer',gca);
   set(get(t,'ylabel'),'String', 'E_r - B_{\theta} (MT/m)','fontsize',16);
   title('Focusing Field (for Positrons)','fontsize',16);
-  if savE; saveas(gca,[plot_loc 'ER.png']); end;
+  if savE; saveas(gca,[plot_loc plot_name '_ER' ext],ext_type); end;
 
   
 % imagesc(ZZ,RR(122)-RR(2:122),flipdim(field_e1(:,2:122)',1));
