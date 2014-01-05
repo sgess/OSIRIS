@@ -38,7 +38,7 @@ os_struct.profile(1).profile_type = '"gaussian", "gaussian",\n';
 os_struct.profile(1).gauss_center = [num2str(param_struct.pos.beam_Z) sep num2str(param_struct.pos.beam_R) eol];
 os_struct.profile(1).gauss_sigma = [num2str(param_struct.beam.kpsz) sep num2str(param_struct.beam.kpsr) '\n'];
 os_struct.profile(1).gauss_rangeZ = [num2str(param_struct.pos.Range_Z_min) sep num2str(param_struct.pos.Range_Z_max) eol];
-os_struct.profile(1).gauss_rangeR = [num2str(0.0) sep num2str(param_struct.pos.Range_Z_max) eol];
+os_struct.profile(1).gauss_rangeR = [num2str(0.0) sep num2str(param_struct.pos.Range_R_max) eol];
 os_struct.profile(1).density = [num2str(param_struct.beam.ratio) eol];
 
 os_struct.species(2).name = ['''plasma''' eol];
