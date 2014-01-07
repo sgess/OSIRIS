@@ -30,3 +30,24 @@ if strcmp(type,'flat')
     N_vec(6) = 0.0;
     
 end
+
+if strcmp(type,'hollow')
+    
+    if n_points ~= 6
+        error('More code needed');
+    end
+    
+    R_vec(1) = 0.0;
+    N_vec(1) = 0.0;
+    R_vec(2) = radius - ramp;
+    N_vec(2) = 0.0;
+    R_vec(3) = radius;
+    N_vec(3) = 1.0;
+    R_vec(4) = radius + width/2;
+    N_vec(4) = 1.0;
+    R_vec(5) = radius + width/2 + ramp;
+    N_vec(5) = 1.0;
+    R_vec(6) = param_struct.size.Box_R;
+    N_vec(6) = 1.0;
+    
+end
