@@ -19,7 +19,7 @@ plot_dir = '/Users/sgess/Desktop/FACET/OS_PLOTS/';
 %date_dir = '2013/May/06/';
 %date_dir = '2013/Sep/04/';
 %date_dir = '2013/now/';
-date_dir = '2014/Jan/05/';
+date_dir = '2014/Jan/06/';
 
 %set_dir = 'OS_eShort2/';
 %set_dir  = 'hollow2/';
@@ -46,7 +46,7 @@ date_dir = '2014/Jan/05/';
 %set_dir = 'wtest3/'; plot_name = 'sd_10';  % 1.0 sd
 %set_dir = 'wtest4/'; plot_name = 'sd_05';  % 0.5 sd
 %set_dir = 'wtest5/'; plot_name = 'full';  % plasma everywhere
-set_dir = 'letssee/'; plot_name = 'dunno';  % plasma everywhere
+set_dir = 'edgetest/'; plot_name = 'dunno';  % plasma everywhere
 
 n0 = 1e17;
 [omega_p, lambda_p, skin_depth, plasma_time, plasma_period, E0] = plasma_parameters(n0);
@@ -129,7 +129,7 @@ imagesc(ZAXIS,RAXIS,plas_rho');
 axis xy;
 axis image;
 colormap(cmap);
-%caxis([-1 1]);
+caxis([-1 1]);
 colorbar;
 xlabel('\mum','fontsize',16);
 ylabel('\mum','fontsize',16);
