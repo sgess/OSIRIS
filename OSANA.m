@@ -5,11 +5,11 @@ clear all;
 
 savE = 0;
 
-%data_dir = '/Users/sgess/Desktop/FACET/os_tars/';
-%plot_dir = '/Users/sgess/Desktop/FACET/OS_PLOTS/';
+data_dir = '/Users/sgess/Desktop/FACET/os_tars/';
+plot_dir = '/Users/sgess/Desktop/FACET/OS_PLOTS/';
 
-data_dir = '/Users/sgess/Desktop/data/os_tars/';
-plot_dir = '/Users/sgess/Desktop/plots/OS/';
+%data_dir = '/Users/sgess/Desktop/data/os_tars/';
+%plot_dir = '/Users/sgess/Desktop/plots/OS/';
 
 %date_dir = '2012/Sep/07/';
 %date_dir = '2013/Mar/29/';
@@ -233,6 +233,7 @@ if savE; saveas(gca,[plot_loc plot_name '_charge_rho' ext],ext_type); end;
   text(ZAXIS(b),a,[' E_{max} = ' num2str(a,'%0.2f') ' GV/m']);
   if savE; saveas(gca,[plot_loc plot_name '_EZ_axis' ext],ext_type); end;
 
+  wavelength = determine_wavelength(ZAXIS,field_e1(:,1))
   
   % calculate fft
   figure(6);
