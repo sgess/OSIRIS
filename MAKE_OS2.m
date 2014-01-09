@@ -27,7 +27,7 @@ if ~exist(command_dir,'dir')
     mkdir(command_dir);
 end
 
-osinput_output_name = 'hollow_70';
+osinput_output_name = 'constSZ_70';
 osinput_output_file = [osinput_dir 'os-stdin_' osinput_output_name];
 
 write = 1;
@@ -75,7 +75,7 @@ input_struct.beam.mass         = SI_eM/SI_eM;     % Particle mass in units of el
 input_struct.beam.N_particles  = 1.96e9;          % Number of beam particles
 input_struct.beam.gamma        = 40000;           % relativistic factor gamma, if 0 energy specified below
 input_struct.beam.sigma_r      = 10.;             % Gaussian sigma_x [um]
-input_struct.beam.sigma_z      = 39.2;            % Gaussian sigma_z [um]
+input_struct.beam.sigma_z      = 20.0;            % Gaussian sigma_z [um]
 input_struct.beam.emit_r       = 10.0;            % normalized X emittance [mm*mrad i.e. 1e-6]
 
 % grid size parameters

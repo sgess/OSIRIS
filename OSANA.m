@@ -3,13 +3,13 @@
 
 clear all;
 
-savE = 0;
+savE = 1;
 
-%data_dir = '/Users/sgess/Desktop/FACET/os_tars/';
-%plot_dir = '/Users/sgess/Desktop/FACET/OS_PLOTS/';
+data_dir = '/Users/sgess/Desktop/FACET/os_tars/';
+plot_dir = '/Users/sgess/Desktop/FACET/OS_PLOTS/';
 
-data_dir = '/Users/sgess/Desktop/data/os_tars/';
-plot_dir = '/Users/sgess/Desktop/plots/OS/';
+%data_dir = '/Users/sgess/Desktop/data/os_tars/';
+%plot_dir = '/Users/sgess/Desktop/plots/OS/';
 
 %date_dir = '2012/Sep/07/';
 %date_dir = '2013/Mar/29/';
@@ -46,7 +46,7 @@ date_dir = '2014/Jan/08/'; date_par = '2014/Jan/08/';
 %set_dir = 'wtest3/'; plot_name = 'sd_10';  % 1.0 sd
 %set_dir = 'wtest4/'; plot_name = 'sd_05';  % 0.5 sd
 %set_dir = 'wtest5/'; plot_name = 'full';  % plasma everywhere
-set_dir = 'hollow_25/'; plot_name = 'dunno';  % plasma everywhere
+set_dir = 'hollow_70/'; plot_name = 'channel_70um';  % plasma everywhere
 
 n0 = 1e17;
 [omega_p, lambda_p, skin_depth, plasma_time, plasma_period, E0] = plasma_parameters(n0);
@@ -222,10 +222,11 @@ if savE; saveas(gca,[plot_loc plot_name '_charge_rho' ext],ext_type); end;
   if savE; saveas(gca,[plot_loc plot_name '_EZ' ext],ext_type); end;
 
   figure(5);
+  wavelength = determine_wavelength(ZAXIS,field_e1(:,1));
   plot(ZAXIS,field_e1(:,1));
   xlabel('\mum','fontsize',16);
   ylabel('E_z (GV/m)','fontsize',16);
-  title('On Axis Longitudinal Field','fontsize',16);
+  title(['On Axis Longitudinal Field, \lambda = ' num2str(wavelength,'%0.2f') '\mum'],'fontsize',16);
   nz = length(field_e1(:,1));
   dont_count = zeros(nz,1);
   dont_count(1:(nz-100)) = 1;
@@ -237,7 +238,6 @@ if savE; saveas(gca,[plot_loc plot_name '_charge_rho' ext],ext_type); end;
   text(ZAXIS(b),a,[' E_{max} = ' num2str(a,'%0.2f') ' GV/m']);
   if savE; saveas(gca,[plot_loc plot_name '_EZ_axis' ext],ext_type); end;
 
-  wavelength = determine_wavelength(ZAXIS,field_e1(:,1))
   
   % calculate fft
   figure(6);
