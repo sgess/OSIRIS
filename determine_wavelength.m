@@ -3,12 +3,16 @@ function wavelength = determine_wavelength(Axis,Wave)
 if isrow(Axis); Axis = Axis'; end
 if isrow(Wave); Wave = Wave'; end
 
-deriv = abs(diff(Wave));
+% chop off naughty bits
+nel = numel(Wave);
+maxel = round(0.9*nel);
+
+deriv = abs(diff(Wave(1:maxel)));
 deriv = [deriv; median(deriv)];
 
-[a,b] = sort(deriv);
-[c,d] = sort(b(1:20));
+[~,b] = sort(deriv);
+[c,~] = sort(b(1:20));
 
 x = diff(c);
-y = median(x(x > 5));
+y = round(median(x(x > 10)));
 wavelength = 2*(Axis(1)-Axis(y)); 

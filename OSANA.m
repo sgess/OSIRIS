@@ -5,11 +5,11 @@ clear all;
 
 savE = 0;
 
-data_dir = '/Users/sgess/Desktop/FACET/os_tars/';
-plot_dir = '/Users/sgess/Desktop/FACET/OS_PLOTS/';
+%data_dir = '/Users/sgess/Desktop/FACET/os_tars/';
+%plot_dir = '/Users/sgess/Desktop/FACET/OS_PLOTS/';
 
-%data_dir = '/Users/sgess/Desktop/data/os_tars/';
-%plot_dir = '/Users/sgess/Desktop/plots/OS/';
+data_dir = '/Users/sgess/Desktop/data/os_tars/';
+plot_dir = '/Users/sgess/Desktop/plots/OS/';
 
 %date_dir = '2012/Sep/07/';
 %date_dir = '2013/Mar/29/';
@@ -19,7 +19,7 @@ plot_dir = '/Users/sgess/Desktop/FACET/OS_PLOTS/';
 %date_dir = '2013/May/06/';
 %date_dir = '2013/Sep/04/';
 %date_dir = '2013/now/';
-date_dir = '2014/Jan/07/';
+date_dir = '2014/Jan/08/'; date_par = '2014/Jan/08/';
 
 %set_dir = 'OS_eShort2/';
 %set_dir  = 'hollow2/';
@@ -46,18 +46,22 @@ date_dir = '2014/Jan/07/';
 %set_dir = 'wtest3/'; plot_name = 'sd_10';  % 1.0 sd
 %set_dir = 'wtest4/'; plot_name = 'sd_05';  % 0.5 sd
 %set_dir = 'wtest5/'; plot_name = 'full';  % plasma everywhere
-set_dir = 'hollowtest/'; plot_name = 'dunno';  % plasma everywhere
+set_dir = 'hollow_25/'; plot_name = 'dunno';  % plasma everywhere
 
 n0 = 1e17;
 [omega_p, lambda_p, skin_depth, plasma_time, plasma_period, E0] = plasma_parameters(n0);
 
+
+
 data_loc = [data_dir date_dir set_dir];
 plot_loc = [plot_dir date_dir set_dir];
+paramloc = ['params/' date_par];
 ext = '.eps'; ext_type = 'epsc';
 if(~exist(plot_loc,'dir'))
     mkdir(plot_loc);
 end
 
+load([paramloc 'param_' set_dir(1:end-1) '.mat']);
 
 for i = 1:1;
 
