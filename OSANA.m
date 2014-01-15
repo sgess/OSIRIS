@@ -3,7 +3,7 @@
 
 clear all;
 
-savE = 0;
+savE = 1;
 
 %data_dir = '/Users/sgess/Desktop/FACET/os_tars/';
 %plot_dir = '/Users/sgess/Desktop/FACET/OS_PLOTS/';
@@ -46,7 +46,7 @@ date_dir = '2014/Jan/09/'; date_par = '2014/Jan/09/';
 %set_dir = 'wtest3/'; plot_name = 'sd_10';  % 1.0 sd
 %set_dir = 'wtest4/'; plot_name = 'sd_05';  % 0.5 sd
 %set_dir = 'wtest5/'; plot_name = 'full';  % plasma everywhere
-set_dir = 'constSZ_70/'; plot_name = 'constSZ_70um';  % plasma everywhere
+set_dir = 'constSZ_30/'; plot_name = 'constSZ_30um';  % plasma everywhere
 
 n0 = 1e17;
 [omega_p, lambda_p, skin_depth, plasma_time, plasma_period, E0] = plasma_parameters(n0);
