@@ -18,8 +18,8 @@ plot_dir = '/Users/sgess/Desktop/FACET/OS_PLOTS/';
 %date_dir = '2013/May/03/';
 %date_dir = '2013/May/06/';
 %date_dir = '2013/Sep/04/';
-%date_dir = '2013/now/';
-date_dir = '2014/Jan/08/'; date_par = '2014/Jan/08/';
+date_dir = '2013/now/'; date_par = '2013/now/';
+%date_dir = '2014/Jan/15/'; date_par = '2014/Jan/15/';
 
 %set_dir = 'OS_eShort2/';
 %set_dir  = 'hollow2/';
@@ -45,8 +45,8 @@ date_dir = '2014/Jan/08/'; date_par = '2014/Jan/08/';
 %set_dir = 'wtest2/'; plot_name = 'holl';  % hollow channel
 %set_dir = 'wtest3/'; plot_name = 'sd_10';  % 1.0 sd
 %set_dir = 'wtest4/'; plot_name = 'sd_05';  % 0.5 sd
-%set_dir = 'wtest5/'; plot_name = 'full';  % plasma everywhere
-set_dir = 'hollow_60/'; plot_name = 'hollow_60um';  % plasma everywhere
+set_dir = 'wtest5/'; plot_name = 'full';  % plasma everywhere
+%set_dir = 'kinoSim/'; plot_name = 'uclaKino';  % plasma everywhere
 
 n0 = 1e17;
 [omega_p, lambda_p, skin_depth, plasma_time, plasma_period, E0] = plasma_parameters(n0);
@@ -61,7 +61,11 @@ if(~exist(plot_loc,'dir'))
     mkdir(plot_loc);
 end
 
-load([paramloc 'param_' set_dir(1:end-1) '.mat']);
+try 
+    load([paramloc 'param_' set_dir(1:end-1) '.mat']);
+catch
+    disp('No param file');
+end
 
 for i = 1:1;
 
