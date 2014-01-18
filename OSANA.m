@@ -3,7 +3,7 @@
 
 clear all;
 
-savE = 0;
+savE = 1;
 
 data_dir = '/Users/sgess/Desktop/FACET/os_tars/';
 plot_dir = '/Users/sgess/Desktop/FACET/OS_PLOTS/';
@@ -18,8 +18,8 @@ plot_dir = '/Users/sgess/Desktop/FACET/OS_PLOTS/';
 %date_dir = '2013/May/03/';
 %date_dir = '2013/May/06/';
 %date_dir = '2013/Sep/04/';
-date_dir = '2013/now/'; date_par = '2013/now/';
-%date_dir = '2014/Jan/15/'; date_par = '2014/Jan/15/';
+%date_dir = '2013/now/'; date_par = '2013/now/';
+date_dir = '2014/Jan/17/'; date_par = '2014/Jan/17/';
 
 %set_dir = 'OS_eShort2/';
 %set_dir  = 'hollow2/';
@@ -45,8 +45,8 @@ date_dir = '2013/now/'; date_par = '2013/now/';
 %set_dir = 'wtest2/'; plot_name = 'holl';  % hollow channel
 %set_dir = 'wtest3/'; plot_name = 'sd_10';  % 1.0 sd
 %set_dir = 'wtest4/'; plot_name = 'sd_05';  % 0.5 sd
-set_dir = 'wtest5/'; plot_name = 'full';  % plasma everywhere
-%set_dir = 'kinoSim/'; plot_name = 'uclaKino';  % plasma everywhere
+%set_dir = 'wtest5/'; plot_name = 'full';  % plasma everywhere
+set_dir = 'eleThin/'; plot_name = 'eleThin';  % plasma everywhere
 
 n0 = 1e17;
 [omega_p, lambda_p, skin_depth, plasma_time, plasma_period, E0] = plasma_parameters(n0);
@@ -78,11 +78,16 @@ e1_file = ['MS/FLD/e1/e1-' num_str '.h5'];
 e2_file = ['MS/FLD/e2/e2-' num_str '.h5'];
 b3_file = ['MS/FLD/b3/b3-' num_str '.h5'];
 
+p1_file = ['MS/PHA/p1p2/beam/p1p2-beam-' num_str '.h5'];
+x1_file = ['MS/PHA/p1x1/beam/p1x1-beam-' num_str '.h5'];
+
 bp_type = 'charge';
 pp_type = 'charge';
 e1_type = 'e1';
 e2_type = 'e2';
 b3_type = 'b3';
+p1_type = 'p1p2';
+x1_type = 'p1x1';
 
 % DNeg = [1 0 0;
 %         1 1 0;
