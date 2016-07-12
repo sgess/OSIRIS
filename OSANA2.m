@@ -27,6 +27,14 @@ try
     E0 = param_struct.plasma.field;
     skin_depth = param_struct.plasma.SD;
     n0 = param_struct.plasma.density;
+    r_in = param_struct.hollow.radius - param_struct.hollow.width/2;
+    r_out = param_struct.hollow.radius + param_struct.hollow.width/2;
+    a = r_in/skin_depth;
+    b = r_out/skin_depth;
+    N1 = param_struct.beam.N_particles;
+    charge1 = param_struct.beam.charge;
+    sigma_z = param_struct.beam.sigma_z;
+    
 catch
     disp('No param file');
     n0 = 1e17;
@@ -80,119 +88,17 @@ ZAXIS = fliplr(linspace(zz(1),zz(2),size(beam_rho,1))-zz(1));
 ions = -repmat(plas_rho(plas_length,:),plas_length,1);
 charge = beam_rho'+plas_rho'+ions';
 
-figure(1);
-imagesc(ZAXIS,RAXIS,plas_rho');
-axis xy;
-axis image;
-colormap(cmap.bwr);
-caxis([-1 1]);
-colorbar;
-xlabel('Z [\mum]','fontsize',16);
-ylabel('R [\mum]','fontsize',16);
-t = colorbar('peer',gca);
-set(get(t,'ylabel'),'String', 'n_0','fontsize',16);
-title('Plasma Density','fontsize',16);
-if savE; saveas(gca,[plot_loc plot_name '_plasma_rho' ext],ext_type); end;
+PLOT_OS2('density',ZAXIS,RAXIS,plas_rho',cmap.bwr,1);
+PLOT_OS2('density',ZAXIS,RAXIS,beam_rho',cmap.bwr,2);
+PLOT_OS2('density',ZAXIS,RAXIS,charge,cmap.bwr,3);
+PLOT_OS2('ez2',ZAXIS,RAXIS,field_e1',cmap.bwr,4);
+PLOT_OS2('ez1',ZAXIS,[],field_e1(:,1),cmap.bwr,5);
+PLOT_OS2('fr2',ZAXIS,RAXIS,-(field_e2'-field_b3'),cmap.bwr,6);
 
+%% Compare Theory
+zz = fliplr(ZAXIS);
+beam_cent = ZAXIS(1) - skin_depth*param_struct.pos.beam_Z;
+[EZ_out, rho_b, shift_ind] = CompareTheory(zz,field_e1(:,1)',n0,N1,charge1,sigma_z,beam_cent,a,b);
 
-figure(2);
-imagesc(ZAXIS,RAXIS,beam_rho');
-axis xy;
-axis image;
-colormap(cmap.bwr);
-caxis([-1 1]);
-colorbar;
-xlabel('Z [\mum]','fontsize',16);
-ylabel('R [\mum]','fontsize',16);
-t = colorbar('peer',gca);
-set(get(t,'ylabel'),'String', 'n_0' ,'fontsize',16);
-title('Beam Density','fontsize',16);
-if savE; saveas(gca,[plot_loc plot_name '_beam_rho' ext],ext_type); end;
-
-figure(3);
-imagesc(ZAXIS,RAXIS,charge);
-axis xy;
-axis image;
-colormap(cmap.bwr);
-caxis([-1 1]);
-colorbar;
-xlabel('Z [\mum]','fontsize',16);
-ylabel('R [\mum]','fontsize',16);
-t = colorbar('peer',gca);
-set(get(t,'ylabel'),'String', 'n_0' ,'fontsize',16);
-title('Charge Density','fontsize',16);
-if savE; saveas(gca,[plot_loc plot_name '_charge_rho' ext],ext_type); end;
-
-%% PLOT FIELD
-
-emax = max(abs(field_e1(:,1)));
-
-figure(4);
-imagesc(ZAXIS,RAXIS,field_e1');
-axis xy;
-axis image;
-xlabel('Z [\mum]','fontsize',16);
-ylabel('R [\mum]','fontsize',16);
-colormap(cmap.bwr);
-caxis([-emax emax]);
-colorbar;
-t = colorbar('peer',gca);
-set(get(t,'ylabel'),'String', 'E_z (GV/m)','fontsize',16);
-title('Longitudinal Field','fontsize',16);
-if savE; saveas(gca,[plot_loc plot_name '_EZ' ext],ext_type); end;
-
-figure(5);
-wavelength = determine_wavelength(ZAXIS,field_e1(:,1));
-plot(ZAXIS,field_e1(:,1));
-xlabel('Z [\mum]','fontsize',16);
-ylabel('E_z (GV/m)','fontsize',16);
-title(['On Axis Longitudinal Field, \lambda = ' num2str(wavelength,'%0.2f') '\mum'],'fontsize',16);
-nz = length(field_e1(:,1));
-dont_count = zeros(nz,1);
-dont_count(1:(nz-100)) = 1;
-[a,b] = max(dont_count.*field_e1(:,1));
-a = double(a);
-hold on;
-plot(ZAXIS(b),a,'r*');
-hold off;
-text(ZAXIS(b),a,[' E_{max} = ' num2str(a,'%0.2f') ' GV/m']);
-if savE; saveas(gca,[plot_loc plot_name '_EZ_axis' ext],ext_type); end;
-
-
-% calculate fft
-figure(6);
-npow = nextpow2(nz);        % next power of 2
-nfft = 2^npow;
-y = fft(field_e1(:,1),nfft)/nz; % fft has units of 1/(# of cells)
-dz = (ZAXIS(1)-ZAXIS(2))*1e-6; % intercell spacing in m
-Fs = 1/dz;                     % wavenumber spacing in 1/m
-f = Fs*linspace(0,1,nfft/2+1)/2; % only plot below nyquist freq (factor of 2)
-realY = 2*abs(y(1:(nfft/2+1))); % plot real part of FFT
-semilogy(f,realY);
-[a,b] = max(realY);
-hold on;
-semilogy(f(b),realY(b),'r*');
-hold off;
-xlabel('Reduced Wavenumber (k/2 \pi) [m^{-1}]','fontsize',16);
-title('Fourier transform of on axis E_z field','fontsize',16);
-text_str = [' \lambda = ' num2str(1e6/f(b),'%0.2f') ' \mum'];
-xpos = f(b);
-ypos = double(realY(b));
-text(xpos,ypos,text_str);
-if savE; saveas(gca,[plot_loc plot_name '_FFT' ext],ext_type); end;
-
-figure(7);
-bfield = -(field_e2'-field_b3');
-bmax = max(abs(bfield(:)));
-imagesc(ZAXIS,RAXIS,bfield);
-axis xy;
-axis image;
-xlabel('Z [\mum]','fontsize',16);
-ylabel('R [\mum]','fontsize',16);
-colormap(cmap.bwr);
-caxis([-bmax bmax]);
-colorbar;
-t = colorbar('peer',gca);
-set(get(t,'ylabel'),'String', 'E_r - B_{\theta} (MT/m)','fontsize',16);
-title('Focusing Field (for Positrons)','fontsize',16);
-if savE; saveas(gca,[plot_loc plot_name '_ER' ext],ext_type); end;
+figure(10);
+plot(ZAXIS,field_e1(:,1)','b',ZAXIS,EZ_out,'r')
