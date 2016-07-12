@@ -5,11 +5,11 @@ clear all;
 
 savE = 1;
 
-%data_dir = '/Users/sgess/Desktop/FACET/os_tars/';
-%plot_dir = '/Users/sgess/Desktop/FACET/OS_PLOTS/';
+data_dir = '/Users/sgess/Desktop/FACET/os_tars/';
+plot_dir = '/Users/sgess/Desktop/FACET/OS_PLOTS/';
 
-data_dir = '/Users/sgess/Desktop/data/os_tars/';
-plot_dir = '/Users/sgess/Desktop/plots/OS/';
+%data_dir = '/Users/sgess/Desktop/data/os_tars/';
+%plot_dir = '/Users/sgess/Desktop/plots/OS/';
 
 %date_dir = '2012/Sep/07/';
 %date_dir = '2013/Mar/29/';
@@ -18,8 +18,7 @@ plot_dir = '/Users/sgess/Desktop/plots/OS/';
 %date_dir = '2013/May/03/';
 %date_dir = '2013/May/06/';
 %date_dir = '2013/Sep/04/';
-date_dir = '2013/now/';
-%date_dir = '2014/Jan/08/'; date_par = '2014/Jan/08/';
+date_dir = '2014/Jan/17/'; date_par = '2014/Jan/17/';
 
 %set_dir = 'OS_eShort2/';
 %set_dir  = 'hollow2/';
@@ -48,6 +47,7 @@ set_dir = 'wtest3/'; plot_name = 'sd_10';  % 1.0 sd
 %set_dir = 'wtest5/'; plot_name = 'full';  % plasma everywhere
 %set_dir = 'constSZ_30/'; plot_name = 'constSZ_30um';  % plasma everywhere
 %set_dir = 'hollow_70/'; plot_name = 'hollow_70um';
+set_dir = 'eleThin/'; plot_name = 'eleThin';  % plasma everywhere
 
 n0 = 1e17;
 [omega_p, lambda_p, skin_depth, plasma_time, plasma_period, E0] = plasma_parameters(n0);
@@ -63,6 +63,11 @@ if(~exist(plot_loc,'dir'))
 end
 
 %load([paramloc 'param_' set_dir(1:end-1) '.mat']);
+try 
+    load([paramloc 'param_' set_dir(1:end-1) '.mat']);
+catch
+    disp('No param file');
+end
 
 for i = 1:1;
 
@@ -75,11 +80,16 @@ e1_file = ['MS/FLD/e1/e1-' num_str '.h5'];
 e2_file = ['MS/FLD/e2/e2-' num_str '.h5'];
 b3_file = ['MS/FLD/b3/b3-' num_str '.h5'];
 
+p1_file = ['MS/PHA/p1p2/beam/p1p2-beam-' num_str '.h5'];
+x1_file = ['MS/PHA/p1x1/beam/p1x1-beam-' num_str '.h5'];
+
 bp_type = 'charge';
 pp_type = 'charge';
 e1_type = 'e1';
 e2_type = 'e2';
 b3_type = 'b3';
+p1_type = 'p1p2';
+x1_type = 'p1x1';
 
 % DNeg = [1 0 0;
 %         1 1 0;

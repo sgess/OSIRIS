@@ -1,11 +1,11 @@
 simulation
 {
-  n0 = 5.0d16
+  n0 = 1.0d17
 }
 
 node_conf 
 {
-  node_number(1:2) = 16, 16,
+  node_number(1:2) = 16, 4,
   if_periodic(1:2) = .false., .false.,
 }
 
@@ -13,7 +13,7 @@ node_conf
 
 grid 
 {
-  nx_p(1:2)   = 320, 320,
+  nx_p(1:2)   = 640, 160,
   coordinates = "cylindrical",
 }
 
@@ -22,7 +22,7 @@ grid
 time_step 
 {
   dt    = 0.016,
-  ndump = 13131, 
+  ndump = 7838,
 }
 
 !----------restart information----------
@@ -42,16 +42,16 @@ restart
 
 space 
 {
-  xmin(1:2) =  0.000d0, 0.0000d0,
-  xmax(1:2) =  16.00d0, 16.00d0,
-  if_move   =  .true., .false.,
+  xmin(1:2) = 0, 0,
+  xmax(1:2) = 32, 8,
+  if_move   = .true., .false.,
 }
 
 !----------time limits ----------
 
 time 
 {
-  tmin = 0.0, tmax = 85000.0,
+  tmin = 0, tmax = 627.0739,
 }
 
 !----------field solver set up----------
@@ -74,14 +74,14 @@ emf_bound
 diag_emf
 {
   ndump_fac = 1,
-  reports   = "e1","e2","b3","psi",
+  reports   = "e1","e2","b3",
 }
 
 !----------number of particle species----------
 
 particles 
 {   
-  num_species = 2, 
+  num_species = 2,
 }
 
 !----------information for species 1----------
@@ -90,18 +90,18 @@ species
 {
   name           = 'beam',
   num_par_max    = 2000000,
-  rqm            = 1.0,
+  rqm            = 1,
   num_par_x(1:2) = 4, 4
-  vth(1:3)       = 0.0, 0.8333, 0.8333,
-  vfl(1:3)       = 0.0, 0.0, 0.0,
+  vth(1:3)       = 0, 1, 1,
+  vfl(1:3)       = 0, 0, 0,
   
   interpolation  = "quadratic"
   
-  free_stream    = .false.,
-  den_min        = 1.0d-8,
-  dgam           = 100.0,
-  num_dgam       = 1000,
-  num_ddgam      = 600,
+  free_stream    = .true.,
+  den_min        = 1.000d-08,
+  dgam           = 100,
+  num_dgam       = 2000,
+  num_ddgam      = 1600,
 }
 
 
@@ -112,11 +112,11 @@ profile
 {
   profile_type(1:2)  = "gaussian", "gaussian",
 
-  gauss_center(1:2)  = 13.0, 0.0,
-  gauss_sigma(1:2)   = 0.588273, 2.52117
-  gauss_range(1:2,1) = 10.0, 15.8,
-  gauss_range(1:2,2) = 0.0, 12.5,
-  density            = 0.503917746,
+  gauss_center(1:2)  = 28, 0,
+  gauss_sigma(1:2)   = 0.59507, 0.29754
+  gauss_range(1:2,1) = 24.2, 31.8,
+  gauss_range(1:2,2) = 0, 2.5,
+  density            = 12.6987,
 }
 
 !----------boundary conditions for this species----------
@@ -152,21 +152,21 @@ species
 {
   name           = 'plasma',
   num_par_max    = 2000000,
-  rqm            = -1.0,
+  rqm            = -1,
   num_par_x(1:2) = 4, 4
-  vth(1:2)       = 0.0d0, 0.0d0,
-  vfl(1:2)       = 0.0d0, 0.0d0,
+  vth(1:2)       = 0, 0,
+  vfl(1:2)       = 0, 0,
   interpolation  = "quadratic"
 }
 
 profile
 {
-  num_x = 6,
+  num_x     = 6,
 
-  fx(1:6,1) = 0.0, 0.0, 1.00, 1.00, 1.000, 1.0,
-  x(1:6,1)  = 0.,32, 35.0, 200000.0, 210000.0, 800000.,
-  fx(1:6,2) = 1., 1., 1., 1., 0., 0.,
-  x(1:6,2)  = 0., 0.5, 0.51, 15.9, 15.95, 16.0,
+  fx(1:6,1) = 0, 0, 1, 1, 1, 1,
+   x(1:6,1) = 0, 64, 67, 3135.3693, 4703.054, 6270.7386,
+  fx(1:6,2) = 0, 0, 1, 1, 0, 0,
+   x(1:6,2) = 0, 2.9432, 2.9492, 3.0492, 3.0551, 8,
 }
 
 
@@ -182,7 +182,7 @@ spe_bound
 diag_species
 {
   ndump_fac         = 1,
-  reports           = "charge","j1","j2",
+  reports           = "charge",
 
   ndump_fac_pha     = 0,
   ps_xmin(1:2)      = 0.0, 0.0,
