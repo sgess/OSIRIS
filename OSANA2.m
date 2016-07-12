@@ -5,7 +5,7 @@ clear all;
 
 savE = 0;
 
-data_dir = '/Users/sgess/Desktop/sims/os_tars/2016/';
+data_dir = '/Users/sgess/Desktop/sims/data/os_tars/2016/';
 plot_dir = '/Users/sgess/Desktop/plots/OS/';
 
 date_dir = '2016/Jul/10/'; date_par = '2016/Jul/16/';
@@ -18,8 +18,8 @@ n0 = 1e17;
 
 
 
-data_loc = [data_dir date_dir set_dir];
-plot_loc = [plot_dir date_dir set_dir];
+data_loc = [data_dir set_dir];
+plot_loc = [plot_dir set_dir];
 %paramloc = ['params/' date_par];
 ext = '.eps'; ext_type = 'epsc';
 if(~exist(plot_loc,'dir'))
@@ -35,9 +35,8 @@ end
 
 
 %%
-for i = 1:1;
 
-file_number = i;
+file_number = 1;
 num_str = num2str(file_number,'%06d');
 
 bp_file = ['MS/DENSITY/beam/charge/charge-beam-' num_str '.h5'];
@@ -77,7 +76,7 @@ ZZ = linspace(z_axis(1),z_axis(2),size(beam_rho,1)) - z_axis(1);
 
 RAXIS = linspace(rr(1),rr(2),size(beam_rho,2));
 ZAXIS = fliplr(linspace(zz(1),zz(2),size(beam_rho,1))-zz(1));
-
+%%
 ions = -repmat(plas_rho(plas_length,:),plas_length,1);
 %charge = flipdim(beam_rho'+plas_rho'+ions',1);
 charge = beam_rho'+plas_rho'+ions';
@@ -96,7 +95,7 @@ figure(1);
 imagesc(ZAXIS,RAXIS,plas_rho');
 axis xy;
 axis image;
-colormap(cmap);
+colormap(cmap.bwr);
 caxis([-1 1]);
 colorbar;
 xlabel('Z [\mum]','fontsize',16);
@@ -114,7 +113,7 @@ figure(2);
 imagesc(ZAXIS,RAXIS,beam_rho');
 axis xy;
 axis image;
-colormap(cmap);
+colormap(cmap.bwr);
 caxis([-1 1]);
 colorbar;
 xlabel('Z [\mum]','fontsize',16);
@@ -130,7 +129,7 @@ figure(3);
 imagesc(ZAXIS,RAXIS,charge);
 axis xy;
 axis image;
-colormap(cmap);
+colormap(cmap.bwr);
 caxis([-1 1]);
 colorbar;
 xlabel('Z [\mum]','fontsize',16);
@@ -142,32 +141,6 @@ set(get(t,'ylabel'),'String', ['n_0 [10^{17} cm^{-3}]' ],'fontsize',16);
 title('Charge Density','fontsize',16);
 if savE; saveas(gca,[plot_loc plot_name '_charge_rho' ext],ext_type); end;
 
-% figure;
-% imagesc(ZZ,RR(122)-RR(2:122),flipdim(plas_rho(:,2:122)',1));
-% colorbar;
-% %caxis([min(min(plas_rho(:,2:122)))/10 0]);
-% xlabel('c/\omega_p','fontsize',16);
-% ylabel('c/\omega_p','fontsize',16);
-% t = colorbar('peer',gca);
-% set(get(t,'ylabel'),'String', 'n_0','fontsize',16);
-% title('Plasma Density','fontsize',16);
-% v =  axis;
-% text(3*v(2)/5,5*v(4)/6,'Beam Direction \rightarrow','FontSize',16,'FontWeight','bold');
-% %saveas(gca,[plot_dir date_dir set_dir 'plas_rho.pdf']);
-
-% figure;
-% imagesc(ZZ,RR(122)-RR(2:122),flipdim(beam_rho(:,2:122)',1));
-% colorbar;
-% %caxis([0 max(max(beam_rho(:,2:122)))/10]);
-% xlabel('c/\omega_p','fontsize',16);
-% ylabel('c/\omega_p','fontsize',16);
-% t = colorbar('peer',gca);
-% set(get(t,'ylabel'),'String', 'n_0','fontsize',16);
-% title('Beam Density','fontsize',16);
-% v =  axis;
-% text(3*v(2)/5,5*v(4)/6,'Beam Direction \rightarrow','FontSize',16,'FontWeight','bold');
-% %saveas(gca,[plot_dir date_dir set_dir 'beam_rho.pdf']);
-% 
 
   emax = max(abs(field_e1(:,1)));
   
@@ -177,7 +150,7 @@ if savE; saveas(gca,[plot_loc plot_name '_charge_rho' ext],ext_type); end;
   axis image;
   xlabel('Z [\mum]','fontsize',16);
   ylabel('R [\mum]','fontsize',16);
-  colormap(cmap);
+  colormap(cmap.bwr);
   caxis([-emax emax]);
   colorbar;
   t = colorbar('peer',gca);
@@ -233,34 +206,10 @@ if savE; saveas(gca,[plot_loc plot_name '_charge_rho' ext],ext_type); end;
   axis image;
   xlabel('Z [\mum]','fontsize',16);
   ylabel('R [\mum]','fontsize',16);
-  colormap(cmap);
+  colormap(cmap.bwr);
   caxis([-bmax bmax]);
   colorbar;
   t = colorbar('peer',gca);
   set(get(t,'ylabel'),'String', 'E_r - B_{\theta} (MT/m)','fontsize',16);
   title('Focusing Field (for Positrons)','fontsize',16);
   if savE; saveas(gca,[plot_loc plot_name '_ER' ext],ext_type); end;
-
-  
-% imagesc(ZZ,RR(122)-RR(2:122),flipdim(field_e1(:,2:122)',1));
-% colorbar;
-% xlabel('c/\omega_p','fontsize',16);
-% ylabel('c/\omega_p','fontsize',16);
-% t = colorbar('peer',gca);
-% set(get(t,'ylabel'),'String', 'm c \omega_p / e','fontsize',16);
-% title('Longitudinal E Field','fontsize',16);
-% v =  axis;
-% text(3*v(2)/5,5*v(4)/6,'Beam Direction \rightarrow','FontSize',16,'FontWeight','bold');
-% %saveas(gca,[plot_dir date_dir set_dir 'EZ_2D.pdf']);
-% 
-% figure;
-% plot(ZZ,field_e1(:,2));
-% xlabel('c/\omega_p','fontsize',16);
-% ylabel('m c \omega_p / e','fontsize',16);
-% title('Longitudinal E Field on Axis','fontsize',16);
-% v =  axis;
-% text(2*v(2)/3,4*v(3)/5,'Beam Direction \rightarrow','FontSize',16,'FontWeight','bold');
-% %saveas(gca,[plot_dir date_dir set_dir 'EZ_1D.pdf']);
-% save('../COMPARE/OS_pShort2.mat','ZZ','field_e1');
-
-end
