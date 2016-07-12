@@ -8,29 +8,28 @@ savE = 0;
 data_dir = '/Users/sgess/Desktop/sims/data/os_tars/2016/';
 plot_dir = '/Users/sgess/Desktop/plots/OS/';
 
-date_dir = '2016/Jul/10/'; date_par = '2016/Jul/16/';
+date_dir = '2016/Jul/10/'; date_par = '2016/Jul/11/';
 
 
-set_dir = 'posThin2/'; plot_name = 'posThin2'; 
-
-n0 = 1e17;
-[omega_p, lambda_p, skin_depth, plasma_time, plasma_period, E0] = plasma_parameters(n0);
-
-
+%set_dir = 'posThin2/'; plot_name = 'posThin2';
+set_dir = 'eleThick/'; plot_name = 'eleThick'; 
 
 data_loc = [data_dir set_dir];
 plot_loc = [plot_dir set_dir];
-%paramloc = ['params/' date_par];
+paramloc = ['params/' date_par];
 ext = '.eps'; ext_type = 'epsc';
 if(~exist(plot_loc,'dir'))
     mkdir(plot_loc);
 end
 
-%load([paramloc 'param_' set_dir(1:end-1) '.mat']);
 try 
     load([paramloc 'param_' set_dir(1:end-1) '.mat']);
+    E0 = param_struct.plasma.field;
+    skin_depth = param_struct.plasma.SD;
 catch
     disp('No param file');
+    n0 = 1e17;
+    [omega_p, lambda_p, skin_depth, plasma_time, plasma_period, E0] = plasma_parameters(n0);
 end
 
 
