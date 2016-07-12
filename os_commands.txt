@@ -1,0 +1,3 @@
+./SUB_OS_D2.sh <name> nNodes Memory RunTime e.g. ./SUB_OS_D2.sh eleThick 64 1024 1
+tar -cvzf <tar_name>.tar --exclude osiris-2D.* <tar_name>
+mv <tar_name>.tar ~/2016/os_tars/
