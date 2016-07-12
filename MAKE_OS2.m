@@ -27,7 +27,7 @@ if ~exist(command_dir,'dir')
     mkdir(command_dir);
 end
 
-osinput_output_name = 'ele130';
+osinput_output_name = 'ele131';
 osinput_output_file = [osinput_dir 'os-stdin_' osinput_output_name];
 
 write = 1;
@@ -53,7 +53,7 @@ input_struct.sim.plasma_Z_ramp = 3;               % longitudinal plasma ramp in 
 input_struct.sim.density_res   = 1e-8;            % resolution of beam and plasma density relative to n0 
 input_struct.sim.nodeR         = 8;               % number of "transverse nodes"
 input_struct.sim.nodeZ         = 16;              % number of "longitudinal nodes" 
-input_struct.sim.n_dumps       = 1;               % number of data dumps per run 
+input_struct.sim.n_dumps       = 5;               % number of data dumps per run 
 input_struct.sim.free_stream   = '.true.';        % false : beam evolves, true : free stream, no evolution
 
 % plasma parameters
