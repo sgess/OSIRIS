@@ -18,8 +18,8 @@ plot_dir = '/Users/sgess/Desktop/plots/OS/';
 %date_dir = '2013/May/03/';
 %date_dir = '2013/May/06/';
 %date_dir = '2013/Sep/04/';
-%date_dir = '2013/now/';
-date_dir = '2014/Jan/09/'; date_par = '2014/Jan/09/';
+date_dir = '2013/now/';
+%date_dir = '2014/Jan/08/'; date_par = '2014/Jan/08/';
 
 %set_dir = 'OS_eShort2/';
 %set_dir  = 'hollow2/';
@@ -43,10 +43,11 @@ date_dir = '2014/Jan/09/'; date_par = '2014/Jan/09/';
 %set_dir = 'e_r3_18/';
 %set_dir = 'wtest/'; plot_name = 'sd_01';   % 0.1 sd
 %set_dir = 'wtest2/'; plot_name = 'holl';  % hollow channel
-%set_dir = 'wtest3/'; plot_name = 'sd_10';  % 1.0 sd
+set_dir = 'wtest3/'; plot_name = 'sd_10';  % 1.0 sd
 %set_dir = 'wtest4/'; plot_name = 'sd_05';  % 0.5 sd
 %set_dir = 'wtest5/'; plot_name = 'full';  % plasma everywhere
-set_dir = 'constSZ_30/'; plot_name = 'constSZ_30um';  % plasma everywhere
+%set_dir = 'constSZ_30/'; plot_name = 'constSZ_30um';  % plasma everywhere
+%set_dir = 'hollow_70/'; plot_name = 'hollow_70um';
 
 n0 = 1e17;
 [omega_p, lambda_p, skin_depth, plasma_time, plasma_period, E0] = plasma_parameters(n0);
@@ -55,13 +56,13 @@ n0 = 1e17;
 
 data_loc = [data_dir date_dir set_dir];
 plot_loc = [plot_dir date_dir set_dir];
-paramloc = ['params/' date_par];
+%paramloc = ['params/' date_par];
 ext = '.eps'; ext_type = 'epsc';
 if(~exist(plot_loc,'dir'))
     mkdir(plot_loc);
 end
 
-load([paramloc 'param_' set_dir(1:end-1) '.mat']);
+%load([paramloc 'param_' set_dir(1:end-1) '.mat']);
 
 for i = 1:1;
 
@@ -135,12 +136,12 @@ axis image;
 colormap(cmap);
 caxis([-1 1]);
 colorbar;
-xlabel('\mum','fontsize',16);
-ylabel('\mum','fontsize',16);
+xlabel('Z [\mum]','fontsize',16);
+ylabel('R [\mum]','fontsize',16);
 %xlabel('c/\omega_p','fontsize',16);
 %ylabel('c/\omega_p','fontsize',16);
 t = colorbar('peer',gca);
-set(get(t,'ylabel'),'String', ['n_0 [' num2str(n0,'%1.1e') ']' ],'fontsize',16);
+set(get(t,'ylabel'),'String', ['n_0 [10^{17} cm^{-3}]' ],'fontsize',16);
 title('Plasma Density','fontsize',16);
 if savE; saveas(gca,[plot_loc plot_name '_plasma_rho' ext],ext_type); end;
 
@@ -153,12 +154,12 @@ axis image;
 colormap(cmap);
 caxis([-1 1]);
 colorbar;
-xlabel('\mum','fontsize',16);
-ylabel('\mum','fontsize',16);
+xlabel('Z [\mum]','fontsize',16);
+ylabel('R [\mum]','fontsize',16);
 %xlabel('c/\omega_p','fontsize',16);
 %ylabel('c/\omega_p','fontsize',16);
 t = colorbar('peer',gca);
-set(get(t,'ylabel'),'String', ['n_0 [' num2str(n0,'%1.1e') ']' ],'fontsize',16);
+set(get(t,'ylabel'),'String', ['n_0 [10^{17} cm^{-3}]' ],'fontsize',16);
 title('Beam Density','fontsize',16);
 if savE; saveas(gca,[plot_loc plot_name '_beam_rho' ext],ext_type); end;
 
@@ -169,12 +170,12 @@ axis image;
 colormap(cmap);
 caxis([-1 1]);
 colorbar;
-xlabel('\mum','fontsize',16);
-ylabel('\mum','fontsize',16);
+xlabel('Z [\mum]','fontsize',16);
+ylabel('R [\mum]','fontsize',16);
 %xlabel('c/\omega_p','fontsize',16);
 %ylabel('c/\omega_p','fontsize',16);
 t = colorbar('peer',gca);
-set(get(t,'ylabel'),'String', ['n_0 [' num2str(n0,'%1.1e') ']' ],'fontsize',16);
+set(get(t,'ylabel'),'String', ['n_0 [10^{17} cm^{-3}]' ],'fontsize',16);
 title('Charge Density','fontsize',16);
 if savE; saveas(gca,[plot_loc plot_name '_charge_rho' ext],ext_type); end;
 
@@ -211,8 +212,8 @@ if savE; saveas(gca,[plot_loc plot_name '_charge_rho' ext],ext_type); end;
   imagesc(ZAXIS,RAXIS,field_e1');
   axis xy;
   axis image;
-  xlabel('\mum','fontsize',16);
-  ylabel('\mum','fontsize',16);
+  xlabel('Z [\mum]','fontsize',16);
+  ylabel('R [\mum]','fontsize',16);
   colormap(cmap);
   caxis([-emax emax]);
   colorbar;
@@ -224,7 +225,7 @@ if savE; saveas(gca,[plot_loc plot_name '_charge_rho' ext],ext_type); end;
   figure(5);
   wavelength = determine_wavelength(ZAXIS,field_e1(:,1));
   plot(ZAXIS,field_e1(:,1));
-  xlabel('\mum','fontsize',16);
+  xlabel('Z [\mum]','fontsize',16);
   ylabel('E_z (GV/m)','fontsize',16);
   title(['On Axis Longitudinal Field, \lambda = ' num2str(wavelength,'%0.2f') '\mum'],'fontsize',16);
   nz = length(field_e1(:,1));
@@ -267,8 +268,8 @@ if savE; saveas(gca,[plot_loc plot_name '_charge_rho' ext],ext_type); end;
   imagesc(ZAXIS,RAXIS,bfield);
   axis xy;
   axis image;
-  xlabel('\mum','fontsize',16);
-  ylabel('\mum','fontsize',16);
+  xlabel('Z [\mum]','fontsize',16);
+  ylabel('R [\mum]','fontsize',16);
   colormap(cmap);
   caxis([-bmax bmax]);
   colorbar;
