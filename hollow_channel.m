@@ -51,3 +51,14 @@ if strcmp(type,'hollow')
     N_vec(6) = 1.0;
     
 end
+
+if strcmp(type,'cdf')
+    
+    R_vec = linspace(0,param_struct.size.Box_R,n_points);
+    dR_vec = R_vec(2)-R_vec(1);
+    gauss = (sqrt(2*pi)*width)^(-1)*exp(-(R_vec-radius).^2/(2*width^2));
+    N_vals = 1000*dR_vec*cumsum(gauss);
+    N_int_vals = floor(N_vals);
+    N_vec = N_int_vals/1000;
+    
+end

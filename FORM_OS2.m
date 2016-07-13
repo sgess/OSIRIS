@@ -100,6 +100,39 @@ else
         os_struct.profile(2).x2 = [num2str(param_struct.hollow.R_vec(1)) sep num2str(param_struct.hollow.R_vec(2))...
             sep num2str(param_struct.hollow.R_vec(3)) sep num2str(param_struct.hollow.R_vec(4))...
             sep num2str(param_struct.hollow.R_vec(5)) sep num2str(param_struct.hollow.R_vec(6)) eol];
+    elseif strcmp(param_struct.hollow.type,'cdf')
+        os_struct.profile(2).num_x = [num2str(param_struct.hollow.n_points) eol];
+        os_struct.profile(2).nx = num2str(param_struct.hollow.n_points);
+        
+        % N z string 
+        n_z_start = [num2str(0.0) sep num2str(0.0)];
+        n_z_mid = [];
+        for i = 1:(param_struct.hollow.n_points-2); n_z_mid = [n_z_mid sep num2str(1.0)]; end;
+        n_z_end = eol;
+        os_struct.profile(2).fx1 = [n_z_start n_z_mid n_z_end];
+        
+        % Z z string
+        z_vals = linspace(param_struct.pos.plasma_Z_ramp,param_struct.pos.plasma_Z_end,param_struct.hollow.n_points);
+        z_z_start = [num2str(0.0) sep num2str(param_struct.pos.plasma_Z_start) sep num2str(param_struct.pos.plasma_Z_ramp)];
+        z_z_mid = [];
+        for i = 4:numel(z_vals); z_z_mid = [z_z_mid sep num2str(z_vals(i),4)]; end;
+        z_z_end = eol;
+        os_struct.profile(2).x1 = [z_z_start z_z_mid z_z_end];
+        
+        % N r string
+        n_r_start = num2str(param_struct.hollow.N_vec(1));
+        n_r_mid = [];
+        for i = 2:param_struct.hollow.n_points; n_r_mid = [n_r_mid sep num2str(param_struct.hollow.N_vec(i),3)]; end;
+        n_r_end = eol;
+        os_struct.profile(2).fx2 = [n_r_start n_r_mid n_r_end];
+        
+        % R r string
+        r_r_start = num2str(param_struct.hollow.R_vec(1));
+        r_r_mid = [];
+        for i = 2:param_struct.hollow.n_points; r_r_mid = [r_r_mid sep num2str(param_struct.hollow.R_vec(i),3)]; end;
+        r_r_end = eol;
+        os_struct.profile(2).x2 = [r_r_start r_r_mid r_r_end];
+        
     else
         error('need more code');
     end

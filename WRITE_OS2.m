@@ -217,19 +217,19 @@ while( row ~= -1 )
         end
     elseif(~isempty(strfind(row, 'fx(1:6,1)')) && section_profile == 1)
         if n_species == 2
-            fprintf(fidout, ['  fx(1:6,1) = ' os_struct.profile(2).fx1]);
+            fprintf(fidout, ['  fx(1:' os_struct.profile(2).nx ',1) = ' os_struct.profile(2).fx1]);
         end
     elseif(~isempty(strfind(row, 'x(1:6,1)')) && section_profile == 1)
         if n_species == 2
-            fprintf(fidout, ['   x(1:6,1) = ' os_struct.profile(2).x1]);
+            fprintf(fidout, ['   x(1:' os_struct.profile(2).nx ',1) = ' os_struct.profile(2).x1]);
         end
     elseif(~isempty(strfind(row, 'fx(1:6,2)')) && section_profile == 1)
         if n_species == 2
-            fprintf(fidout, ['  fx(1:6,2) = ' os_struct.profile(2).fx2]);
+            fprintf(fidout, ['  fx(1:' os_struct.profile(2).nx ',2) = ' os_struct.profile(2).fx2]);
         end
     elseif(~isempty(strfind(row, 'x(1:6,2)')) && section_profile == 1)
         if n_species == 2
-            fprintf(fidout, ['   x(1:6,2) = ' os_struct.profile(2).x2]);
+            fprintf(fidout, ['   x(1:' os_struct.profile(2).nx ',2) = ' os_struct.profile(2).x2]);
         end
     else
        fprintf(fidout, row);
