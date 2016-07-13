@@ -66,7 +66,7 @@ input_struct.hollow.use        = 1;               % use hollow channel?
 input_struct.hollow.radius     = 250;            % central radius in microns
 input_struct.hollow.width      = 10;              % annulus width in microns
 input_struct.hollow.ramp       = 0.1;             % ramp length in microns
-input_struct.hollow.n_points   = 20;               % number of points in profile
+input_struct.hollow.n_points   = 16;               % number of points in profile
 input_struct.hollow.type       = 'cdf';        % profile type
 
 % beam parameters
