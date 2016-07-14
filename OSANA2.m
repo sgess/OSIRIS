@@ -11,11 +11,15 @@ savE = 0;
 
 data_dir = '/Users/sgess/Desktop/sims/data/os_tars/2016/';
 plot_dir = '/Users/sgess/Desktop/plots/OS/';
-date_dir = '2016/Jul/12/'; date_par = '2016/Jul/12/';
+date_dir = '2016/Jul/14/'; date_par = '2016/Jul/14/';
 %set_dir = 'ele131/'; plot_name = 'ele131';
-set_dir = 'hol131/'; plot_name = 'hol131';
+%set_dir = 'hol131/'; plot_name = 'hol131';
 %set_dir = 'cdfTest1/'; plot_name = 'cdfTest1';
 %set_dir = 'cdfTest2/'; plot_name = 'cdfTest2';
+%set_dir = 'moreCDF2/'; plot_name = 'moreCDF2';
+%set_dir = 'width8/'; plot_name = 'width8';
+set_dir = 'width32/'; plot_name = 'width32';
+
 
 data_loc = [data_dir set_dir];
 plot_loc = [plot_dir set_dir];
