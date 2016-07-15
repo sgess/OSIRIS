@@ -60,5 +60,6 @@ if strcmp(type,'cdf')
     N_vals = 1000*dR_vec*cumsum(gauss);
     N_int_vals = floor(N_vals);
     N_vec = N_int_vals/1000;
+    N_vec(end) = 0;
     
 end

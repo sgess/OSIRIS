@@ -11,14 +11,15 @@ savE = 0;
 
 data_dir = '/Users/sgess/Desktop/sims/data/os_tars/2016/';
 plot_dir = '/Users/sgess/Desktop/plots/OS/';
-date_dir = '2016/Jul/14/'; date_par = '2016/Jul/14/';
+date_dir = '2016/Jul/16/'; date_par = '2016/Jul/16/';
 %set_dir = 'ele131/'; plot_name = 'ele131';
-%set_dir = 'hol131/'; plot_name = 'hol131';
+set_dir = 'hol131/'; plot_name = 'hol131';
 %set_dir = 'cdfTest1/'; plot_name = 'cdfTest1';
 %set_dir = 'cdfTest2/'; plot_name = 'cdfTest2';
 %set_dir = 'moreCDF2/'; plot_name = 'moreCDF2';
 %set_dir = 'width8/'; plot_name = 'width8';
-set_dir = 'width32/'; plot_name = 'width32';
+%set_dir = 'width16/'; plot_name = 'width16';
+%set_dir = 'width32/'; plot_name = 'width32';
 
 
 data_loc = [data_dir set_dir];
@@ -97,7 +98,7 @@ charge = beam_rho'+plas_rho'+ions';
 
 PLOT_OS2('density',ZAXIS,RAXIS,plas_rho',cmap.bwr,1);
 PLOT_OS2('density',ZAXIS,RAXIS,beam_rho',cmap.bwr,2);
-PLOT_OS2('density',ZAXIS,RAXIS,charge,cmap.bwr,3);
+PLOT_OS2('density',ZAXIS,RAXIS,charge,cmap.bwr,3,'cax',0.1);
 PLOT_OS2('ez2',ZAXIS,RAXIS,field_e1',cmap.bwr,4);
 PLOT_OS2('ez1',ZAXIS,[],field_e1(:,1),cmap.bwr,5);
 PLOT_OS2('fr2',ZAXIS,RAXIS,-(field_e2'-field_b3'),cmap.bwr,6);
@@ -108,4 +109,24 @@ beam_cent = ZAXIS(1) - skin_depth*param_struct.pos.beam_Z;
 [EZ_out, rho_b, shift_ind] = CompareTheory(zz,field_e1(:,1)',n0,N1,charge1,sigma_z,beam_cent,a,b);
 
 figure(10);
-plot(ZAXIS,field_e1(:,1)','b',ZAXIS,EZ_out,'r')
+plot(ZAXIS,field_e1(:,1)','b',ZAXIS,EZ_out,'r');
+
+%%
+shape32 = plas_rho(end-2,:);
+ez32 = field_e1(:,1);
+%%
+figure(1);
+plot(RAXIS,-shape0,'b',RAXIS,-shape4,'c',RAXIS,-shape8,'g',RAXIS,-shape16,'m',RAXIS,-shape32,'r','linewidth',3);
+axis([0 158 0 1]);
+legend('\sigma = 0 \mum','\sigma = 4 \mum','\sigma = 8 \mum','\sigma = 16 \mum','\sigma = 32 \mum','location','northwest');
+xlabel('R [\mum]');
+ylabel('n/n_0');
+set(gca,'fontsize',18);
+
+figure(2);
+plot(ZAXIS,ez0,'b',ZAXIS,ez4,'c',ZAXIS,ez8,'g',ZAXIS,ez16,'m',ZAXIS,ez32,'r','linewidth',3);
+axis([0 630 -0.25 0.25]);
+legend('\sigma = 0 \mum','\sigma = 4 \mum','\sigma = 8 \mum','\sigma = 16 \mum','\sigma = 32 \mum','location','southwest');
+xlabel('Z [\mum]');
+ylabel('E_z [GV/m]');
+set(gca,'fontsize',18);

@@ -1,4 +1,13 @@
-function PLOT_OS2(plot_type,ZAXIS,RAXIS,data,cmap_mat,fig_num)
+function PLOT_OS2(plot_type,ZAXIS,RAXIS,data,cmap_mat,fig_num,varargin)
+
+if length(varargin)==2
+    if strcmp(varargin{1},'cax')
+        cax_val = varargin{2};
+    end
+else
+    cax_val = 1;
+end
+
 
 figure(fig_num);
 
@@ -7,7 +16,7 @@ if strcmp(plot_type,'density')
     axis xy;
     axis image;
     colormap(cmap_mat);
-    caxis([-1 1]);
+    caxis([-cax_val cax_val]);
     xlabel('Z [\mum]','fontsize',16);
     ylabel('R [\mum]','fontsize',16);
     t = colorbar('peer',gca);
@@ -22,7 +31,7 @@ if strcmp(plot_type,'ez2')
     axis xy;
     axis image;
     colormap(cmap_mat);
-    caxis([-emax emax]);
+    caxis([-emax*cax_val emax*cax_val]);
     xlabel('Z [\mum]','fontsize',16);
     ylabel('R [\mum]','fontsize',16);
     t = colorbar('peer',gca);
@@ -45,7 +54,7 @@ if strcmp(plot_type,'fr2')
     axis xy;
     axis image;
     colormap(cmap_mat);
-    caxis([-bmax bmax]);
+    caxis([-bmax*cax_val bmax*cax_val]);
     xlabel('Z [\mum]','fontsize',16);
     ylabel('R [\mum]','fontsize',16);
     t = colorbar('peer',gca);
