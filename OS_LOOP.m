@@ -43,12 +43,12 @@ for i = 1:length(set_dirs)
     
     %PLOT_OS2('density',ZAXIS,RAXIS,plas_rho,cmap.bwr,1);
     %PLOT_OS2('density',ZAXIS,RAXIS,beam_rho,cmap.bwr,2);
-    PLOT_OS2('density',ZAXIS,RAXIS,total_rho,cmap.bwr,3,'cax',0.1);
-    PLOT_OS2('ez2',ZAXIS,RAXIS,EZ,cmap.bwr,4);
-    PLOT_OS2('ez1',ZAXIS,[],EZ_LINE,cmap.bwr,5);
+    %PLOT_OS2('density',ZAXIS,RAXIS,total_rho,cmap.bwr,3,'cax',0.1);
+    %PLOT_OS2('ez2',ZAXIS,RAXIS,EZ,cmap.bwr,4);
+    %PLOT_OS2('ez1',ZAXIS,[],EZ_LINE,cmap.bwr,5);
     %PLOT_OS2('fr2',ZAXIS,RAXIS,FR,cmap.bwr,6);
     
-    pause;
+    %pause;
 end
 %%
 figure(1);
@@ -91,5 +91,8 @@ d5 = z5 - beam_z;
 ds = [d1 d2 d3 d4 d5];
 zs = [z1 z2 z3 z4 z5];
 wids = [0 4 8 16 32];
-
-plot(wids,ds,'ko')
+p1 = polyfit(wids,ds,1);
+plot(wids,ds,'ko',[wids(1) wids(end)],p1(1)*[wids(1) wids(end)]+p1(2),'k--','linewidth',2);
+xlabel('Channel Boundary \sigma [\mum]');
+ylabel('Half-Wavelength [\mum]');
+set(gca,'fontsize',16);
