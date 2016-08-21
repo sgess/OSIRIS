@@ -66,8 +66,9 @@ if strcmp(type,'cdf')
 end
 
 if strcmp(type,'cdf2')
-    
-    rs = 0:width:(width*(n_points-3));
+    w = width;
+    wm = w*(n_points-3);
+    rs = 0:w:wm;
     m = mean(rs);
     rg = rs+(radius-m);
     R_vec = [0 rg r_max];
@@ -75,6 +76,24 @@ if strcmp(type,'cdf2')
     dR_vec = [0 diff(R_vec)];
     gauss = (sqrt(2*pi)*width)^(-1)*exp(-(R_vec-radius).^2/(2*width^2));
     N_vals = 1000*cumsum(dR_vec.*gauss);
+    N_int_vals = floor(N_vals);
+    N_vec = N_int_vals/1000;
+    %N_vec(end) = 0;
+    
+end
+
+if strcmp(type,'gauss')
+    
+    if n_points ~= 11
+        error('More code needed');
+    end
+    
+    R_vec = [0 (radius-3*width) (radius-2*width) (radius-1*width) (radius-0.5*width) radius...
+        (radius+0.5*width) (radius+1*width) (radius+2*width) (radius+3*width) r_max];
+    
+    %dR_vec = [0 diff(R_vec)];
+    gauss = exp(-(R_vec-radius).^2/(2*width^2));
+    N_vals = 1000*gauss;
     N_int_vals = floor(N_vals);
     N_vec = N_int_vals/1000;
     %N_vec(end) = 0;
