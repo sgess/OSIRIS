@@ -84,12 +84,12 @@ end
 
 if strcmp(type,'gauss')
     
-    if n_points ~= 11
+    if n_points ~= 13
         error('More code needed');
     end
     
-    R_vec = [0 (radius-3*width) (radius-2*width) (radius-1*width) (radius-0.5*width) radius...
-        (radius+0.5*width) (radius+1*width) (radius+2*width) (radius+3*width) r_max];
+    R_vec = [0 (radius-3.5*width) (radius-2.5*width) (radius-1.5*width) (radius-0.75*width) (radius-0.35*width) radius...
+        (radius+0.35*width) (radius+0.75*width) (radius+1.5*width) (radius+2.5*width) (radius+3.5*width) r_max];
     
     %dR_vec = [0 diff(R_vec)];
     gauss = exp(-(R_vec-radius).^2/(2*width^2));

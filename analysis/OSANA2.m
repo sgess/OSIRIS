@@ -23,7 +23,8 @@ date_dir = '2016/Aug/21/'; date_par = '2016/Aug/21/';
 %set_dir = 'width32/'; plot_name = 'width32';
 %set_dir = 'yisss/'; plot_name = 'yisss';
 %set_dir = 'e225_expt8/'; plot_name = 'e225_expt8';
-set_dir = 'e225_cdf1/'; plot_name = 'e225_cdf1';
+%set_dir = 'e225_cdf1/'; plot_name = 'e225_cdf1';
+set_dir = 'e225_gauss1/'; plot_name = 'e225_gauss1';
 
 data_loc = [data_dir set_dir];
 plot_loc = [plot_dir set_dir];
