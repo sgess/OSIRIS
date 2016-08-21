@@ -112,6 +112,7 @@ cat > osiris-2D.e.cmd << EOF
   source /u/local/Modules/default/init/modules.csh
   module load intel/11.1
   module load openmpi/1.4
+  module load hdf5
 
 
   setenv PATH /u/local/bin:\$PATH
