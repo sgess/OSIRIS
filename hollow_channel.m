@@ -9,6 +9,7 @@ N_vec = zeros(1,n_points);
 radius = param_struct.hollow.radius/param_struct.plasma.SD;
 width = param_struct.hollow.width/param_struct.plasma.SD;
 ramp = param_struct.hollow.ramp/param_struct.plasma.SD;
+r_max = param_struct.size.Box_R;
 
 if strcmp(type,'flat')
     
@@ -58,6 +59,22 @@ if strcmp(type,'cdf')
     dR_vec = R_vec(2)-R_vec(1);
     gauss = (sqrt(2*pi)*width)^(-1)*exp(-(R_vec-radius).^2/(2*width^2));
     N_vals = 1000*dR_vec*cumsum(gauss);
+    N_int_vals = floor(N_vals);
+    N_vec = N_int_vals/1000;
+    %N_vec(end) = 0;
+    
+end
+
+if strcmp(type,'cdf2')
+    
+    rs = 0:width:(width*(n_points-3));
+    m = mean(rs);
+    rg = rs+(radius-m);
+    R_vec = [0 rg r_max];
+    
+    dR_vec = [0 diff(R_vec)];
+    gauss = (sqrt(2*pi)*width)^(-1)*exp(-(R_vec-radius).^2/(2*width^2));
+    N_vals = 1000*cumsum(dR_vec.*gauss);
     N_int_vals = floor(N_vals);
     N_vec = N_int_vals/1000;
     %N_vec(end) = 0;
