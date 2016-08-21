@@ -105,17 +105,17 @@ else
         os_struct.profile(2).nx = num2str(param_struct.hollow.n_points);
         
         % N z string 
-        n_z_start = [num2str(0.0,'%0.2f') sep num2str(0.0,'%0.2f')];
+        n_z_start = [num2str(0.0,'%0.0f') sep num2str(0.0,'%0.0f')];
         n_z_mid = [];
-        for i = 1:(param_struct.hollow.n_points-2); n_z_mid = [n_z_mid sep num2str(1.0,'%0.2f')]; end;
+        for i = 1:(param_struct.hollow.n_points-2); n_z_mid = [n_z_mid sep num2str(1.0,'%0.0f')]; end;
         n_z_end = eol;
         os_struct.profile(2).fx1 = [n_z_start n_z_mid n_z_end];
         
         % Z z string
         z_vals = linspace(param_struct.pos.plasma_Z_ramp,param_struct.pos.plasma_Z_end,param_struct.hollow.n_points);
-        z_z_start = [num2str(0.0,'%0.2f') sep num2str(param_struct.pos.plasma_Z_start,'%0.2f') sep num2str(param_struct.pos.plasma_Z_ramp,'%0.3f')];
+        z_z_start = [num2str(0.0,'%0.0f') sep num2str(param_struct.pos.plasma_Z_start,'%0.0f') sep num2str(param_struct.pos.plasma_Z_ramp,'%0.0f')];
         z_z_mid = [];
-        for i = 4:numel(z_vals); z_z_mid = [z_z_mid sep num2str(z_vals(i),'%0.2f')]; end;
+        for i = 4:numel(z_vals); z_z_mid = [z_z_mid sep num2str(z_vals(i),'%0.0f')]; end;
         z_z_end = eol;
         os_struct.profile(2).x1 = [z_z_start z_z_mid z_z_end];
         
