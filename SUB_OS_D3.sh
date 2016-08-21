@@ -41,7 +41,7 @@ rt=$4
 
 # write file using above variables
 # NO TOUCHY!
-cat > d3.osiris-2D.e.cmd << EOF
+cat > osiris-2D.e.cmd << EOF
 #!/bin/csh -f
 #  osiris-2D.e.cmd
 #
@@ -63,8 +63,8 @@ cat > d3.osiris-2D.e.cmd << EOF
 #  Parallelism:  $nodes-way parallel
 #  Resources requested
 #$ -pe dc* $nodes
-#$ -l h_data=${mem}M,h_rt=$rt:00:00
-# # #
+#$ -l h_data=${mem}M,h_rt=$rt:00:00,highp
+# # #$ -q mori_msa.q
 #
 #  Name of application for log
 #$ -v QQAPP=openmpi
@@ -154,7 +154,7 @@ cat > d3.osiris-2D.e.cmd << EOF
   exit (0)
 EOF
 
-chmod u+x d3.osiris-2D.e.cmd
+chmod u+x osiris-2D.e.cmd
 
 echo Submitting Job...
 
