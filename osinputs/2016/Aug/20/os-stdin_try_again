@@ -1,0 +1,211 @@
+simulation
+{
+  n0 = 7.0d16
+}
+
+node_conf 
+{
+  node_number(1:2) = 16, 4,
+  if_periodic(1:2) = .false., .false.,
+}
+
+!----------spatial grid----------
+
+grid 
+{
+  nx_p(1:2)   = 640, 160,
+  coordinates = "cylindrical",
+}
+
+!----------time step and global data dump timestep number----------
+
+time_step 
+{
+  dt    = 0.016,
+  ndump = 6623,
+}
+
+!----------restart information----------
+
+restart 
+{
+  ndump_fac  = 0 
+  if_restart = .false.,
+  if_remold  = .false.,
+}
+
+!----------spatial limits of the simulations----------
+
+!(note that this includes information about
+
+! the motion of the simulation box)
+
+space 
+{
+  xmin(1:2) = 0, 0,
+  xmax(1:2) = 32, 8,
+  if_move   = .true., .false.,
+}
+
+!----------time limits ----------
+
+time 
+{
+  tmin = 0, tmax = 529.8745,
+}
+
+!----------field solver set up----------
+
+el_mag_fld 
+{
+}
+
+
+!----------boundary conditions for em-fields ----------
+
+emf_bound 
+{
+  type(1:2,1) = 1, 1, 
+  type(1:2,2) = 20, 5,
+}
+
+
+!----------diagnostic for electromagnetic fields---------- 
+diag_emf
+{
+  ndump_fac = 1,
+  reports   = "e1","e2","b3","psi",
+}
+
+!----------number of particle species----------
+
+particles 
+{   
+  num_species = 2,
+}
+
+!----------information for species 1----------
+
+species 
+{
+  name           = 'beam',
+  num_par_max    = 2000000,
+  rqm            = -1,
+  num_par_x(1:2) = 4, 4
+  vth(1:3)       = 0, 0.25, 0.25,
+  vfl(1:3)       = 0, 0, 0,
+  
+  interpolation  = "quadratic"
+  
+  free_stream    = .true.,
+  den_min        = 1.000d-08,
+  dgam           = 100,
+  num_dgam       = 2000,
+  num_ddgam      = 1600,
+}
+
+
+!----------Density profile for this species----------
+!  actual profile
+
+profile 
+{
+  profile_type(1:2)  = "gaussian", "gaussian",
+
+  gauss_center(1:2)  = 25, 0,
+  gauss_sigma(1:2)   = 1.9915, 0.99575
+  gauss_range(1:2,1) = 18.5, 31.5,
+  gauss_range(1:2,2) = 0, 3.25,
+  density            = 0.056691,
+}
+
+!----------boundary conditions for this species----------
+
+spe_bound 
+{
+  type(1:2,1) = 1, 1,
+  type(1:2,2) = 20, 5,
+}
+
+diag_species
+{
+  ndump_fac         = 1,
+  reports           = "charge",
+
+  ndump_fac_pha     = 1,
+  ps_xmin(1:2)      = 0.0, 0.0,
+  ps_xmax(1:2)      = 16.0, 16.0,
+  ps_nx(1:2)        = 160, 160,
+
+  ps_pmin(1:2)      = 0.0, -2.5,
+  ps_pmax(1:2)      = 50000.0, 2.5,
+  ps_np(1:2)        = 500, 100,
+  if_ps_p_auto(1:2) = .false., .false.,
+
+  phasespaces       = "p1x1", "p1p2",
+
+}
+
+!----------information for species 2----------
+
+species 
+{
+  name           = 'plasma',
+  num_par_max    = 2000000,
+  rqm            = -1,
+  num_par_x(1:2) = 4, 4
+  vth(1:2)       = 0, 0,
+  vfl(1:2)       = 0, 0,
+  interpolation  = "quadratic"
+}
+
+profile
+{
+  num_x     = 20,
+
+  fx(1:20,1) = 0.000, 0.000, 1.000, 1.000, 1.000, 1.000, 1.000, 1.000, 1.000, 1.000, 1.000, 1.000, 1.000, 1.000, 1.000, 1.000, 1.000, 1.000, 1.000, 1.000,
+   x(1:20,1) = 0.000, 64.000, 67.000, 893.065, 1168.420, 1443.775, 1719.130, 1994.485, 2269.840, 2545.195, 2820.550, 3095.905, 3371.260, 3646.615, 3921.970, 4197.325, 4472.680, 4748.035, 5023.390, 5298.745,
+  fx(1:20,2) = 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.012, 0.631, 0.980, 0.983, 0.983, 0.983,
+   x(1:20,2) = 0.000, 0.421, 0.842, 1.263, 1.684, 2.105, 2.526, 2.947, 3.368, 3.789, 4.211, 4.632, 5.053, 5.474, 5.895, 6.316, 6.737, 7.158, 7.579, 8.000,
+}
+
+
+!----------boundary conditions for this species----------
+
+spe_bound
+{
+  type(1:2,1) = 1, 1,
+  type(1:2,2) = 20, 5,
+}
+
+
+diag_species
+{
+  ndump_fac         = 1,
+  reports           = "charge","j1","j2",
+
+  ndump_fac_pha     = 0,
+  ps_xmin(1:2)      = 0.0, 0.0,
+  ps_xmax(1:2)      = 3600.0, 3.0,
+  ps_nx(1:2)        = 900, 30,
+
+  ps_pmin(1:2)      = -5.0, -5.0,
+  ps_pmax(1:2)      = 500.0, 5.0,
+  ps_np(1:2)        = 500, 10,
+  if_ps_p_auto(1:2) = .false., .false.,
+
+  phasespaces       = "p1x1",
+}
+
+smooth 
+{
+  ifsmooth(1)     = .true.,
+  smooth_level(1) = 5,
+  swfj(1:3,1,1)   = 1,2,1,
+  swfj(1:3,2,1)   = 1,2,1,
+  swfj(1:3,3,1)   = 1,2,1,
+  swfj(1:3,4,1)   = 1,2,1,
+  swfj(1:3,5,1)   = -5,14,-5,
+  ifsmooth(2)     = .false.,
+}
+
