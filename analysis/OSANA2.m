@@ -12,7 +12,8 @@ savE = 0;
 data_dir = '/Users/sgess/Desktop/sims/data/os_tars/2016/';
 plot_dir = '/Users/sgess/Desktop/plots/OS/';
 %date_dir = '2016/Jul/16/'; date_par = '2016/Jul/16/';
-date_dir = '2016/Aug/21/'; date_par = '2016/Aug/21/';
+%date_dir = '2016/Aug/21/'; date_par = '2016/Aug/21/';
+date_dir = '2016/Aug/22/'; date_par = '2016/Aug/22/';
 %set_dir = 'ele131/'; plot_name = 'ele131';
 %set_dir = 'hol131/'; plot_name = 'hol131';
 %set_dir = 'cdfTest1/'; plot_name = 'cdfTest1';
@@ -25,7 +26,7 @@ date_dir = '2016/Aug/21/'; date_par = '2016/Aug/21/';
 %set_dir = 'e225_expt8/'; plot_name = 'e225_expt8';
 %set_dir = 'e225_cdf1/'; plot_name = 'e225_cdf1';
 %set_dir = 'e225_gauss2/'; plot_name = 'e225_gauss2';
-set_dir = 'e225_trap2/'; plot_name = 'e225_trap2';
+set_dir = 'e225_trap3/'; plot_name = 'e225_trap3';
 
 data_loc = [data_dir set_dir];
 plot_loc = [plot_dir set_dir];
