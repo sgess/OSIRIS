@@ -99,3 +99,21 @@ if strcmp(type,'gauss')
     %N_vec(end) = 0;
     
 end
+
+if strcmp(type,'trap')
+    
+    if n_points ~= 6
+        error('More code needed');
+    end
+    r_ramp = param_struct.hollow.r_ramp/param_struct.plasma.SD;
+    
+    r_ll = radius-width/2-r_ramp;
+    r_lh = radius-width/2;
+    r_hh = radius+width/2;
+    r_hl = radius+width/2+r_ramp;
+    
+    R_vec = [0 r_ll r_lh r_hh r_hl r_max];
+    N_vec = [0 0 1 1 0 0];
+  
+    
+end
