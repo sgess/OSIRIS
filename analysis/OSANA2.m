@@ -26,7 +26,7 @@ date_dir = '2016/Aug/22/'; date_par = '2016/Aug/22/';
 %set_dir = 'e225_expt8/'; plot_name = 'e225_expt8';
 %set_dir = 'e225_cdf1/'; plot_name = 'e225_cdf1';
 %set_dir = 'e225_gauss2/'; plot_name = 'e225_gauss2';
-set_dir = 'e225_trap3/'; plot_name = 'e225_trap3';
+set_dir = 'e225_trap4/'; plot_name = 'e225_trap4';
 
 data_loc = [data_dir set_dir];
 plot_loc = [plot_dir set_dir];

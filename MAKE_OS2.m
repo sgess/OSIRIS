@@ -27,7 +27,7 @@ if ~exist(command_dir,'dir')
     mkdir(command_dir);
 end
 
-osinput_output_name = 'e225_trap4';
+osinput_output_name = 'e225_trap5';
 osinput_output_file = [osinput_dir 'os-stdin_' osinput_output_name];
 
 write = 1;
@@ -64,7 +64,7 @@ input_struct.plasma.mass       = SI_eM/SI_eM;     % Particle mass in units of el
 % hollow channel profile
 input_struct.hollow.use        = 1;               % use hollow channel?
 input_struct.hollow.radius     = 250;            % central radius in microns
-input_struct.hollow.width      = 5;              % annulus width in microns
+input_struct.hollow.width      = 30;              % annulus width in microns
 input_struct.hollow.ramp       = 0.1;             % ramp length in microns
 input_struct.hollow.r_ramp     = 5;             % ramp length in microns
 input_struct.hollow.n_points   = 6;               % number of points in profile
