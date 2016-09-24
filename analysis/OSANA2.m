@@ -12,10 +12,9 @@ savE = 0;
 data_dir = '/Users/sgess/Desktop/sims/data/os_tars/2016/';
 plot_dir = '/Users/sgess/Desktop/plots/OS/';
 %date_dir = '2016/Jul/16/'; date_par = '2016/Jul/16/';
-%date_dir = '2016/Aug/21/'; date_par = '2016/Aug/21/';
+date_dir = '2016/Aug/21/'; date_par = '2016/Aug/21/';
 %date_dir = '2016/Aug/22/'; date_par = '2016/Aug/22/';
-%date_dir = '2016/Aug/22/'; date_par = '2016/Aug/22/';
-date_dir = '2016/Aug/23/'; date_par = '2016/Aug/23/';
+%date_dir = '2016/Aug/23/'; date_par = '2016/Aug/23/';
 
 %set_dir = 'ele131/'; plot_name = 'ele131';
 %set_dir = 'hol131/'; plot_name = 'hol131';
@@ -28,10 +27,11 @@ date_dir = '2016/Aug/23/'; date_par = '2016/Aug/23/';
 %set_dir = 'yisss/'; plot_name = 'yisss';
 %set_dir = 'e225_expt8/'; plot_name = 'e225_expt8';
 %set_dir = 'e225_cdf1/'; plot_name = 'e225_cdf1';
-%set_dir = 'e225_gauss2/'; plot_name = 'e225_gauss2';
-%set_dir = 'e225_trap5/'; plot_name = 'e225_trap5';
-set_dir = 'e225_trap7/'; plot_name = 'e225_trap7';
+set_dir = 'e225_gauss2/'; plot_name = 'e225_gauss2';
+%set_dir = 'e225_trap1/'; plot_name = 'e225_trap1';
+%set_dir = 'e225_trap7/'; plot_name = 'e225_trap7';
 %set_dir = 'e225_gauss3/'; plot_name = 'e225_gauss3';
+%set_dir = 'e225_gauss5/'; plot_name = 'e225_gauss5';
 
 data_loc = [data_dir set_dir];
 plot_loc = [plot_dir set_dir];
@@ -107,12 +107,12 @@ ZAXIS = fliplr(linspace(zz(1),zz(2),size(beam_rho,1))-zz(1));
 ions = -repmat(plas_rho(plas_length,:),plas_length,1);
 charge = beam_rho'+plas_rho'+ions';
 
-PLOT_OS2('density',ZAXIS,RAXIS,plas_rho',cmap.bwr,1);
-PLOT_OS2('density',ZAXIS,RAXIS,beam_rho',cmap.bwr,2);
-PLOT_OS2('density',ZAXIS,RAXIS,charge,cmap.bwr,3,'cax',0.1);
-PLOT_OS2('ez2',ZAXIS,RAXIS,field_e1',cmap.bwr,4);
-PLOT_OS2('ez1',ZAXIS,[],field_e1(:,1),cmap.bwr,5);
-PLOT_OS2('fr2',ZAXIS,RAXIS,-(field_e2'-field_b3'),cmap.bwr,6);
+PLOT_OS2('density',ZAXIS,RAXIS,plas_rho',cmap.bwr,11);
+PLOT_OS2('density',ZAXIS,RAXIS,beam_rho',cmap.bwr,21);
+PLOT_OS2('density',ZAXIS,RAXIS,charge,cmap.bwr,31,'cax',0.1);
+PLOT_OS2('ez2',ZAXIS,RAXIS,field_e1',cmap.bwr,41);
+PLOT_OS2('ez1',ZAXIS,[],field_e1(:,1),cmap.bwr,51);
+PLOT_OS2('fr2',ZAXIS,RAXIS,-(field_e2'-field_b3'),cmap.bwr,61);
 
 %% Compare Theory
 zz = fliplr(ZAXIS);
