@@ -10,7 +10,8 @@ SI_consts;
 osinput_template_file = [pwd '/osinputs/os-stdin_template'];
 
 % specify output
-date_dir = GET_DATE_DIR;
+timezone = 'America/Los_Angeles';
+date_dir = GET_DATE_DIR(timezone);
 
 osinput_dir = [pwd '/osinputs/' date_dir];
 if ~exist(osinput_dir,'dir')
@@ -27,7 +28,7 @@ if ~exist(command_dir,'dir')
     mkdir(command_dir);
 end
 
-osinput_output_name = 'trap_comp1';
+osinput_output_name = 'trap_comp2';
 osinput_output_file = [osinput_dir 'os-stdin_' osinput_output_name];
 
 write = 1;
