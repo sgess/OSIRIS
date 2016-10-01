@@ -106,8 +106,11 @@ ZAXIS = fliplr(linspace(zz(1),zz(2),size(beam_rho,1))-zz(1));
 
 ions = -repmat(plas_rho(plas_length,:),plas_length,1);
 charge = beam_rho'+plas_rho'+ions';
+p_rho = plas_rho';
+d_rho = p_rho(:,end);
 
 PLOT_OS2('density',ZAXIS,RAXIS,plas_rho',cmap.bwr,11);
+PLOT_OS2('d1',[],RAXIS,d_rho,[],12);
 PLOT_OS2('density',ZAXIS,RAXIS,beam_rho',cmap.bwr,21);
 PLOT_OS2('density',ZAXIS,RAXIS,charge,cmap.bwr,31,'cax',0.1);
 PLOT_OS2('ez2',ZAXIS,RAXIS,field_e1',cmap.bwr,41);

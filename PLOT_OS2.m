@@ -11,6 +11,14 @@ end
 
 figure(fig_num);
 
+if strcmp(plot_type,'d1')
+    plot(RAXIS,data,'k','linewidth',3); axis tight;
+    xlabel('R [\mum]','fontsize',16);
+    ylabel('n [1E15]','fontsize',16);
+    title('Density Lineout','fontsize',16);
+    set(gca,'fontsize',14);
+end
+
 if strcmp(plot_type,'density')
     imagesc(ZAXIS,RAXIS,data);
     axis xy;

@@ -27,7 +27,7 @@ if ~exist(command_dir,'dir')
     mkdir(command_dir);
 end
 
-osinput_output_name = 'e225_gauss5';
+osinput_output_name = 'trap_comp1';
 osinput_output_file = [osinput_dir 'os-stdin_' osinput_output_name];
 
 write = 1;
@@ -64,11 +64,11 @@ input_struct.plasma.mass       = SI_eM/SI_eM;     % Particle mass in units of el
 % hollow channel profile
 input_struct.hollow.use        = 1;               % use hollow channel?
 input_struct.hollow.radius     = 250;            % central radius in microns
-input_struct.hollow.width      = 68;              % annulus width in microns
+input_struct.hollow.width      = 10;              % annulus width in microns
 input_struct.hollow.ramp       = 0.1;             % ramp length in microns
-input_struct.hollow.r_ramp     = 100;             % ramp length in microns
-input_struct.hollow.n_points   = 13;               % number of points in profile
-input_struct.hollow.type       = 'gauss';        % profile type
+input_struct.hollow.r_ramp     = 65;             % ramp length in microns
+input_struct.hollow.n_points   = 6;               % number of points in profile
+input_struct.hollow.type       = 'trap';        % profile type
 
 % beam parameters
 input_struct.beam.charge       = 1.0;            % -1 for electron, +1 for positron
@@ -76,7 +76,7 @@ input_struct.beam.mass         = SI_eM/SI_eM;     % Particle mass in units of el
 input_struct.beam.N_particles  = 2.50e9;          % Number of beam particles
 input_struct.beam.gamma        = 40000;           % relativistic factor gamma, if 0 energy specified below
 input_struct.beam.sigma_r      = 20.;             % Gaussian sigma_x [um]
-input_struct.beam.sigma_z      = 80.0;            % Gaussian sigma_z [um]
+input_struct.beam.sigma_z      = 40.0;            % Gaussian sigma_z [um]
 input_struct.beam.emit_r       = 5.0;            % normalized X emittance [mm*mrad i.e. 1e-6]
 
 % grid size parameters
@@ -86,11 +86,11 @@ input_struct.size.Box_Z        = 32;              % box size in skin depths
 
 % grid position parameters
 input_struct.pos.Center_R        = 0;             % beam centroid position in skin depths (0 is on axis)
-input_struct.pos.Center_Z        = 24;            % beam centroid position in
+input_struct.pos.Center_Z        = 25;            % beam centroid position in
 input_struct.pos.Range_R_max     = 3.25;          % Max extent of beam in R
 input_struct.pos.Range_R_min     = 0;             % Min extent of beam in R
 input_struct.pos.Range_Z_max     = 31.5;          % Max extent of beam in Z
-input_struct.pos.Range_Z_min     = 16.5;          % Min extent of beam in Z
+input_struct.pos.Range_Z_min     = 18.5;          % Min extent of beam in Z
 
 % PARAMETER CALCULATOR
 param_struct = CALC_OS2(input_struct);
