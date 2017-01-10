@@ -9,12 +9,18 @@ savE = 0;
 
 %% FIND DATA
 
-data_dir = '/Users/sgess/Desktop/sims/data/os_tars/2016/';
-plot_dir = '/Users/sgess/Desktop/plots/OS/';
+%data_dir = '/Users/sgess/Desktop/sims/data/os_tars/2016/';
+%plot_dir = '/Users/sgess/Desktop/plots/OS/';
+
+data_dir = '/Users/sgess/Desktop/sims/OS/data/2017/';
+plot_dir = '/Users/sgess/Desktop/sims/OS/plots/2017';
+
 %date_dir = '2016/Jul/16/'; date_par = '2016/Jul/16/';
-date_dir = '2016/Aug/21/'; date_par = '2016/Aug/21/';
+%date_dir = '2016/Aug/21/'; date_par = '2016/Aug/21/';
 %date_dir = '2016/Aug/22/'; date_par = '2016/Aug/22/';
 %date_dir = '2016/Aug/23/'; date_par = '2016/Aug/23/';
+
+date_dir = '2017/Jan/10/'; date_par = '2017/Jan/10/';
 
 %set_dir = 'ele131/'; plot_name = 'ele131';
 %set_dir = 'hol131/'; plot_name = 'hol131';
@@ -27,11 +33,12 @@ date_dir = '2016/Aug/21/'; date_par = '2016/Aug/21/';
 %set_dir = 'yisss/'; plot_name = 'yisss';
 %set_dir = 'e225_expt8/'; plot_name = 'e225_expt8';
 %set_dir = 'e225_cdf1/'; plot_name = 'e225_cdf1';
-set_dir = 'e225_gauss2/'; plot_name = 'e225_gauss2';
+%set_dir = 'e225_gauss2/'; plot_name = 'e225_gauss2';
 %set_dir = 'e225_trap1/'; plot_name = 'e225_trap1';
 %set_dir = 'e225_trap7/'; plot_name = 'e225_trap7';
 %set_dir = 'e225_gauss3/'; plot_name = 'e225_gauss3';
 %set_dir = 'e225_gauss5/'; plot_name = 'e225_gauss5';
+set_dir = 'trap_comp3/'; plot_name = 'trap_comp3';
 
 data_loc = [data_dir set_dir];
 plot_loc = [plot_dir set_dir];

@@ -141,6 +141,7 @@ if param_struct.hollow.use
     param_struct.hollow.width    = input_struct.hollow.width;
     param_struct.hollow.ramp     = input_struct.hollow.ramp;
     param_struct.hollow.r_ramp   = input_struct.hollow.r_ramp;
+    param_struct.hollow.n_in     = input_struct.hollow.n_in;
     [param_struct.hollow.R_vec, param_struct.hollow.N_vec] = hollow_channel(param_struct);
 else
     param_struct.pos.plasma_R_start = 0.0;                                                                         % Plasma start [skin depths]

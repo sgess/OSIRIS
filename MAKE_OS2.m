@@ -28,7 +28,7 @@ if ~exist(command_dir,'dir')
     mkdir(command_dir);
 end
 
-osinput_output_name = 'trap_comp3';
+osinput_output_name = 'partial1';
 osinput_output_file = [osinput_dir 'os-stdin_' osinput_output_name];
 
 write = 1;
@@ -64,21 +64,22 @@ input_struct.plasma.mass       = SI_eM/SI_eM;     % Particle mass in units of el
 
 % hollow channel profile
 input_struct.hollow.use        = 1;               % use hollow channel?
-input_struct.hollow.radius     = 250;            % central radius in microns
-input_struct.hollow.width      = 10;              % annulus width in microns
+input_struct.hollow.radius     = 250;             % central radius in microns
+input_struct.hollow.width      = 30;              % annulus width in microns
 input_struct.hollow.ramp       = 0.1;             % ramp length in microns
-input_struct.hollow.r_ramp     = 100;             % ramp length in microns
+input_struct.hollow.r_ramp     = 10;              % ramp length in microns
 input_struct.hollow.n_points   = 6;               % number of points in profile
-input_struct.hollow.type       = 'trap';        % profile type
+input_struct.hollow.n_in       = 0.01;            % number of points in profile
+input_struct.hollow.type       = 'partial';       % profile type
 
 % beam parameters
-input_struct.beam.charge       = 1.0;            % -1 for electron, +1 for positron
+input_struct.beam.charge       = 1.0;             % -1 for electron, +1 for positron
 input_struct.beam.mass         = SI_eM/SI_eM;     % Particle mass in units of electron mass
 input_struct.beam.N_particles  = 2.50e9;          % Number of beam particles
 input_struct.beam.gamma        = 40000;           % relativistic factor gamma, if 0 energy specified below
 input_struct.beam.sigma_r      = 20.;             % Gaussian sigma_x [um]
 input_struct.beam.sigma_z      = 40.0;            % Gaussian sigma_z [um]
-input_struct.beam.emit_r       = 5.0;            % normalized X emittance [mm*mrad i.e. 1e-6]
+input_struct.beam.emit_r       = 5.0;             % normalized X emittance [mm*mrad i.e. 1e-6]
 
 % grid size parameters
 input_struct.size.cell         = 0.05;            % cell size as a fraction of the skin depth
