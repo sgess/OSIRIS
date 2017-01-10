@@ -28,7 +28,7 @@ if ~exist(command_dir,'dir')
     mkdir(command_dir);
 end
 
-osinput_output_name = 'trap_comp2';
+osinput_output_name = 'trap_comp3';
 osinput_output_file = [osinput_dir 'os-stdin_' osinput_output_name];
 
 write = 1;
@@ -67,7 +67,7 @@ input_struct.hollow.use        = 1;               % use hollow channel?
 input_struct.hollow.radius     = 250;            % central radius in microns
 input_struct.hollow.width      = 10;              % annulus width in microns
 input_struct.hollow.ramp       = 0.1;             % ramp length in microns
-input_struct.hollow.r_ramp     = 65;             % ramp length in microns
+input_struct.hollow.r_ramp     = 100;             % ramp length in microns
 input_struct.hollow.n_points   = 6;               % number of points in profile
 input_struct.hollow.type       = 'trap';        % profile type
 
