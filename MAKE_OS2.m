@@ -28,7 +28,7 @@ if ~exist(command_dir,'dir')
     mkdir(command_dir);
 end
 
-osinput_output_name = 'partialExp';
+osinput_output_name = 'partial2';
 osinput_output_file = [osinput_dir 'os-stdin_' osinput_output_name];
 
 write = 1;
@@ -49,7 +49,7 @@ input_struct.sim.N_species     = 2;               % Number of particle species
 input_struct.sim.dt            = 0.016;           % Time step in 1/omega_p, must satisfy courant condition
 input_struct.sim.prop          = 1.000;           % propagation length of the beam [cm]
 input_struct.sim.gamma_steps   = 400;             % number of time steps for beam to accelerate during initialization
-input_struct.sim.plasma_R_ramp = 0.05;            % transverse plasma ramp in skin depths (to avoid noise at boundary) 
+input_struct.sim.plasma_R_ramp = 0.02;            % transverse plasma ramp in skin depths (to avoid noise at boundary) 
 input_struct.sim.plasma_Z_ramp = 3;               % longitudinal plasma ramp in skin depths (to avoid trapped charge) 
 input_struct.sim.density_res   = 1e-8;            % resolution of beam and plasma density relative to n0 
 input_struct.sim.nodeR         = 2;               % number of "transverse nodes"
