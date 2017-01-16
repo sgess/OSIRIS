@@ -14,14 +14,14 @@ plot_dir = '/Users/sgess/Desktop/sims/OS/plots/2017/';
 
 date_dirs = {'2017/Jan/16/';
              '2017/Jan/10/';
-             '2017/Jan/15/';
+             '2017/Jan/16/';
              '2017/Jan/15/';
              '2017/Jan/15/';
              '2017/Jan/15/'};
 
 date_pars = {'2017/Jan/16/';
              '2017/Jan/10/';
-             '2017/Jan/15/';
+             '2017/Jan/16/';
              '2017/Jan/15/';
              '2017/Jan/15/';
              '2017/Jan/15/'};
