@@ -49,7 +49,8 @@ date_dir = '2017/Jan/16/'; date_par = '2017/Jan/16/';
 %set_dir = 'partial3/'; plot_name = 'partial3';
 %set_dir = 'partial4/'; plot_name = 'partial4';
 %set_dir = 'partial5/'; plot_name = 'partial5';
-set_dir = 'partial0/'; plot_name = 'partial0';
+%set_dir = 'partial0/'; plot_name = 'partial0';
+set_dir = 'theOnePercent/'; plot_name = 'theOnePercent';
 
 data_loc = [data_dir set_dir];
 plot_loc = [plot_dir set_dir];
