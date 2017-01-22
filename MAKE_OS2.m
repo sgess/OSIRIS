@@ -28,7 +28,7 @@ if ~exist(command_dir,'dir')
     mkdir(command_dir);
 end
 
-osinput_output_name = 'uniFuck2';
+osinput_output_name = 'uniFuck3';
 osinput_output_file = [osinput_dir 'os-stdin_' osinput_output_name];
 
 write = 1;
@@ -88,11 +88,11 @@ input_struct.size.Box_Z        = 16;              % box size in skin depths
 
 % grid position parameters
 input_struct.pos.Center_R        = 0;             % beam centroid position in skin depths (0 is on axis)
-input_struct.pos.Center_Z        = 15;            % beam centroid position in
+input_struct.pos.Center_Z        = 13;            % beam centroid position in
 input_struct.pos.Range_R_max     = 3.25;          % Max extent of beam in R
 input_struct.pos.Range_R_min     = 0;             % Min extent of beam in R
-input_struct.pos.Range_Z_max     = 31.5;          % Max extent of beam in Z
-input_struct.pos.Range_Z_min     = 18.5;          % Min extent of beam in Z
+input_struct.pos.Range_Z_max     = 15.5;          % Max extent of beam in Z
+input_struct.pos.Range_Z_min     = 10.5;          % Min extent of beam in Z
 
 % PARAMETER CALCULATOR
 param_struct = CALC_OS2(input_struct);
