@@ -57,7 +57,7 @@ date_dir = '2017/Jan/22/'; date_par = '2017/Jan/22/';
 %set_dir = 'ramp20pct1/'; plot_name = 'ramp20pct1';
 %set_dir = 'pct1long80/'; plot_name = 'pct1long80';
 %set_dir = 'pct2long80/'; plot_name = 'pct2long80';
-set_dir = 'uniFuck5/'; plot_name = 'uniFuck5';
+set_dir = 'long160part0/'; plot_name = 'long160part0';
 
 data_loc = [data_dir set_dir];
 plot_loc = [plot_dir set_dir];
@@ -79,6 +79,7 @@ try
     N1 = param_struct.beam.N_particles;
     charge1 = param_struct.beam.charge;
     sigma_z = param_struct.beam.sigma_z;
+    z_cen = param_struct.pos.beam_Z*skin_depth;
     
 catch
     disp('No param file');
@@ -127,7 +128,7 @@ RR = linspace(r_axis(1),r_axis(2),size(beam_rho,2));
 ZZ = linspace(z_axis(1),z_axis(2),size(beam_rho,1)) - z_axis(1);
 
 RAXIS = linspace(rr(1),rr(2),size(beam_rho,2));
-ZAXIS = fliplr(linspace(zz(1),zz(2),size(beam_rho,1))-zz(1));
+ZAXIS = fliplr(linspace(zz(1),zz(2),size(beam_rho,1))-(zz(2)-z_cen));
 %% PLOT DENSITY
 
 ions = -repmat(plas_rho(plas_length,:),plas_length,1);
