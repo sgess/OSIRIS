@@ -23,7 +23,8 @@ plot_dir = '/Users/sgess/Desktop/sims/OS/plots/2017/';
 %date_dir = '2017/Jan/10/'; date_par = '2017/Jan/10/';
 %date_dir = '2017/Jan/15/'; date_par = '2017/Jan/15/';
 %date_dir = '2017/Jan/16/'; date_par = '2017/Jan/16/';
-date_dir = '2017/Jan/17/'; date_par = '2017/Jan/17/';
+%date_dir = '2017/Jan/17/'; date_par = '2017/Jan/17/';
+date_dir = '2017/Jan/22/'; date_par = '2017/Jan/22/';
 
 %set_dir = 'ele131/'; plot_name = 'ele131';
 %set_dir = 'hol131/'; plot_name = 'hol131';
@@ -55,7 +56,8 @@ date_dir = '2017/Jan/17/'; date_par = '2017/Jan/17/';
 %set_dir = 'ramp1pct1/'; plot_name = 'ramp1pct1';
 %set_dir = 'ramp20pct1/'; plot_name = 'ramp20pct1';
 %set_dir = 'pct1long80/'; plot_name = 'pct1long80';
-set_dir = 'pct2long80/'; plot_name = 'pct2long80';
+%set_dir = 'pct2long80/'; plot_name = 'pct2long80';
+set_dir = 'uniFuck/'; plot_name = 'uniFuck';
 
 data_loc = [data_dir set_dir];
 plot_loc = [plot_dir set_dir];
@@ -70,10 +72,10 @@ try
     E0 = param_struct.plasma.field;
     skin_depth = param_struct.plasma.SD;
     n0 = param_struct.plasma.density;
-    r_in = param_struct.hollow.radius - param_struct.hollow.width/2;
-    r_out = param_struct.hollow.radius + param_struct.hollow.width/2;
-    a = r_in/skin_depth;
-    b = r_out/skin_depth;
+%     r_in = param_struct.hollow.radius - param_struct.hollow.width/2;
+%     r_out = param_struct.hollow.radius + param_struct.hollow.width/2;
+%     a = r_in/skin_depth;
+%     b = r_out/skin_depth;
     N1 = param_struct.beam.N_particles;
     charge1 = param_struct.beam.charge;
     sigma_z = param_struct.beam.sigma_z;
@@ -87,7 +89,7 @@ end
 
 %% LOAD DATA
 
-file_number = 1;
+file_number = 5;
 num_str = num2str(file_number,'%06d');
 
 bp_file = ['MS/DENSITY/beam/charge/charge-beam-' num_str '.h5'];
