@@ -57,7 +57,7 @@ date_dir = '2017/Jan/22/'; date_par = '2017/Jan/22/';
 %set_dir = 'ramp20pct1/'; plot_name = 'ramp20pct1';
 %set_dir = 'pct1long80/'; plot_name = 'pct1long80';
 %set_dir = 'pct2long80/'; plot_name = 'pct2long80';
-set_dir = 'long160part0/'; plot_name = 'long160part0';
+set_dir = 'long161part0/'; plot_name = 'long161part0';
 
 data_loc = [data_dir set_dir];
 plot_loc = [plot_dir set_dir];
