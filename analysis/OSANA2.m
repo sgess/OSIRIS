@@ -22,8 +22,8 @@ plot_dir = '/Users/sgess/Desktop/sims/OS/plots/2017/';
 
 %date_dir = '2017/Jan/10/'; date_par = '2017/Jan/10/';
 %date_dir = '2017/Jan/15/'; date_par = '2017/Jan/15/';
-date_dir = '2017/Jan/16/'; date_par = '2017/Jan/16/';
-%date_dir = '2017/Jan/17/'; date_par = '2017/Jan/17/';
+%date_dir = '2017/Jan/16/'; date_par = '2017/Jan/16/';
+date_dir = '2017/Jan/17/'; date_par = '2017/Jan/17/';
 
 %set_dir = 'ele131/'; plot_name = 'ele131';
 %set_dir = 'hol131/'; plot_name = 'hol131';
@@ -46,7 +46,7 @@ date_dir = '2017/Jan/16/'; date_par = '2017/Jan/16/';
 
 %set_dir = 'trap_comp3/'; plot_name = 'trap_comp3';
 %set_dir = 'partialExp/'; plot_name = 'partialExp';
-set_dir = 'partial2/'; plot_name = 'partial2';
+%set_dir = 'partial2/'; plot_name = 'partial2';
 %set_dir = 'partial3/'; plot_name = 'partial3';
 %set_dir = 'partial4/'; plot_name = 'partial4';
 %set_dir = 'partial5/'; plot_name = 'partial5';
@@ -54,6 +54,8 @@ set_dir = 'partial2/'; plot_name = 'partial2';
 %set_dir = 'theOnePercent/'; plot_name = 'theOnePercent';
 %set_dir = 'ramp1pct1/'; plot_name = 'ramp1pct1';
 %set_dir = 'ramp20pct1/'; plot_name = 'ramp20pct1';
+%set_dir = 'pct1long80/'; plot_name = 'pct1long80';
+set_dir = 'pct2long80/'; plot_name = 'pct2long80';
 
 data_loc = [data_dir set_dir];
 plot_loc = [plot_dir set_dir];

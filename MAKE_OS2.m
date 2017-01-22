@@ -28,7 +28,7 @@ if ~exist(command_dir,'dir')
     mkdir(command_dir);
 end
 
-osinput_output_name = 'pct2long80';
+osinput_output_name = 'uniFuck';
 osinput_output_file = [osinput_dir 'os-stdin_' osinput_output_name];
 
 write = 1;
@@ -58,12 +58,12 @@ input_struct.sim.n_dumps       = 5;               % number of data dumps per run
 input_struct.sim.free_stream   = '.true.';        % false : beam evolves, true : free stream, no evolution
 
 % plasma parameters
-input_struct.plasma.density    = 3e16;            % /cm^3
+input_struct.plasma.density    = 1.4e15;          % /cm^3
 input_struct.plasma.charge     = -1.0;            % e 
 input_struct.plasma.mass       = SI_eM/SI_eM;     % Particle mass in units of electron mass
 
 % hollow channel profile
-input_struct.hollow.use        = 1;               % use hollow channel?
+input_struct.hollow.use        = 0;               % use hollow channel?
 input_struct.hollow.radius     = 250;             % central radius in microns
 input_struct.hollow.width      = 30;              % annulus width in microns
 input_struct.hollow.ramp       = 0.1;             % ramp length in microns
