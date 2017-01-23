@@ -23,9 +23,9 @@ plot_dir = '/Users/sgess/Desktop/sims/OS/plots/2017/';
 %date_dir = '2017/Jan/10/'; date_par = '2017/Jan/10/';
 %date_dir = '2017/Jan/15/'; date_par = '2017/Jan/15/';
 %date_dir = '2017/Jan/16/'; date_par = '2017/Jan/16/';
-date_dir = '2017/Jan/17/'; date_par = '2017/Jan/17/';
+%date_dir = '2017/Jan/17/'; date_par = '2017/Jan/17/';
 %date_dir = '2017/Jan/22/'; date_par = '2017/Jan/22/';
-%date_dir = '2017/Jan/23/'; date_par = '2017/Jan/23/';
+date_dir = '2017/Jan/23/'; date_par = '2017/Jan/23/';
 
 %set_dir = 'ele131/'; plot_name = 'ele131';
 %set_dir = 'hol131/'; plot_name = 'hol131';
@@ -57,12 +57,13 @@ date_dir = '2017/Jan/17/'; date_par = '2017/Jan/17/';
 %set_dir = 'ramp1pct1/'; plot_name = 'ramp1pct1';
 %set_dir = 'ramp20pct1/'; plot_name = 'ramp20pct1';
 %set_dir = 'pct1long80/'; plot_name = 'pct1long80';
-set_dir = 'pct2long80/'; plot_name = 'pct2long80';
+%set_dir = 'pct2long80/'; plot_name = 'pct2long80';
 %set_dir = 'long162part0/'; plot_name = 'long162part0';
 %set_dir = 'uniFuck4/'; plot_name = 'uniFuck4';
 %set_dir = 'long80part02/'; plot_name = 'long80part02';
 %set_dir = 'long80part02wid10/'; plot_name = 'long80part02wid10';
 %set_dir = 'long80part02wid01/'; plot_name = 'long80part02wid01';
+set_dir = 'long80part01wid01/'; plot_name = 'long80part01wid01';
 
 data_loc = [data_dir set_dir];
 plot_loc = [plot_dir set_dir];
