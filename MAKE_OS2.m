@@ -28,7 +28,7 @@ if ~exist(command_dir,'dir')
     mkdir(command_dir);
 end
 
-osinput_output_name = 'long80part02wid01';
+osinput_output_name = 'long80part01wid01';
 osinput_output_file = [osinput_dir 'os-stdin_' osinput_output_name];
 
 write = 1;
@@ -69,7 +69,7 @@ input_struct.hollow.width      = 1;              % annulus width in microns
 input_struct.hollow.ramp       = 0.1;             % ramp length in microns
 input_struct.hollow.r_ramp     = 10;               % ramp length in microns
 input_struct.hollow.n_points   = 6;               % number of points in profile
-input_struct.hollow.n_in       = 0.02;            % density of partial channel
+input_struct.hollow.n_in       = 0.01;            % density of partial channel
 input_struct.hollow.type       = 'partial';       % profile type
 
 % beam parameters
