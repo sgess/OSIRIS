@@ -63,7 +63,8 @@ date_dir = '2017/Jan/23/'; date_par = '2017/Jan/23/';
 %set_dir = 'long80part02/'; plot_name = 'long80part02';
 %set_dir = 'long80part02wid10/'; plot_name = 'long80part02wid10';
 %set_dir = 'long80part02wid01/'; plot_name = 'long80part02wid01';
-set_dir = 'long80part01wid01/'; plot_name = 'long80part01wid01';
+%set_dir = 'long80part01wid01/'; plot_name = 'long80part01wid01';
+set_dir = 'long80part01wid10/'; plot_name = 'long80part01wid10';
 
 data_loc = [data_dir set_dir];
 plot_loc = [plot_dir set_dir];
