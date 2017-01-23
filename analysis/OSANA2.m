@@ -59,7 +59,8 @@ date_dir = '2017/Jan/22/'; date_par = '2017/Jan/22/';
 %set_dir = 'pct2long80/'; plot_name = 'pct2long80';
 %set_dir = 'long162part0/'; plot_name = 'long162part0';
 %set_dir = 'uniFuck4/'; plot_name = 'uniFuck4';
-set_dir = 'long80part02/'; plot_name = 'long80part02';
+%set_dir = 'long80part02/'; plot_name = 'long80part02';
+set_dir = 'long80part02wid10/'; plot_name = 'long80part02wid10';
 
 
 data_loc = [data_dir set_dir];
