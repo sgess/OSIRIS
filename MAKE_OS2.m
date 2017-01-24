@@ -28,7 +28,7 @@ if ~exist(command_dir,'dir')
     mkdir(command_dir);
 end
 
-osinput_output_name = 'n27long80part01wid30';
+osinput_output_name = 'n27long120part01wid30';
 osinput_output_file = [osinput_dir 'os-stdin_' osinput_output_name];
 
 write = 1;
@@ -78,7 +78,7 @@ input_struct.beam.mass         = SI_eM/SI_eM;     % Particle mass in units of el
 input_struct.beam.N_particles  = 2.50e9;          % Number of beam particles
 input_struct.beam.gamma        = 40000;           % relativistic factor gamma, if 0 energy specified below
 input_struct.beam.sigma_r      = 20.;             % Gaussian sigma_x [um]
-input_struct.beam.sigma_z      = 80.0;            % Gaussian sigma_z [um]
+input_struct.beam.sigma_z      = 120.0;           % Gaussian sigma_z [um]
 input_struct.beam.emit_r       = 5.0;             % normalized X emittance [mm*mrad i.e. 1e-6]
 
 % grid size parameters
@@ -88,11 +88,11 @@ input_struct.size.Box_Z        = 32;              % box size in skin depths
 
 % grid position parameters
 input_struct.pos.Center_R        = 0;             % beam centroid position in skin depths (0 is on axis)
-input_struct.pos.Center_Z        = 23;            % beam centroid position in
+input_struct.pos.Center_Z        = 22;            % beam centroid position in
 input_struct.pos.Range_R_max     = 3.25;          % Max extent of beam in R
 input_struct.pos.Range_R_min     = 0;             % Min extent of beam in R
 input_struct.pos.Range_Z_max     = 31.5;          % Max extent of beam in Z
-input_struct.pos.Range_Z_min     = 14.5;           % Min extent of beam in Z
+input_struct.pos.Range_Z_min     = 12.5;           % Min extent of beam in Z
 
 % PARAMETER CALCULATOR
 param_struct = CALC_OS2(input_struct);
