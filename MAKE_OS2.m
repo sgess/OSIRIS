@@ -1,7 +1,7 @@
  % OSIRIS Matlab os-stdin generation example script
 % S. Gessner Sep 6, 2012
 
-clear all;
+%clear all;
 
 % import standard SI constants
 SI_consts;
@@ -28,7 +28,7 @@ if ~exist(command_dir,'dir')
     mkdir(command_dir);
 end
 
-osinput_output_name = 'n2long80part01wid30';
+osinput_output_name = 'n27long80part01wid30';
 osinput_output_file = [osinput_dir 'os-stdin_' osinput_output_name];
 
 write = 1;
@@ -58,7 +58,7 @@ input_struct.sim.n_dumps       = 5;               % number of data dumps per run
 input_struct.sim.free_stream   = '.true.';        % false : beam evolves, true : free stream, no evolution
 
 % plasma parameters
-input_struct.plasma.density    = 2E16;            % /cm^3
+input_struct.plasma.density    = 2.7E16;          % /cm^3
 input_struct.plasma.charge     = -1.0;            % e 
 input_struct.plasma.mass       = SI_eM/SI_eM;     % Particle mass in units of electron mass
 
