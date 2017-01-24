@@ -25,7 +25,8 @@ plot_dir = '/Users/sgess/Desktop/sims/OS/plots/2017/';
 %date_dir = '2017/Jan/16/'; date_par = '2017/Jan/16/';
 %date_dir = '2017/Jan/17/'; date_par = '2017/Jan/17/';
 %date_dir = '2017/Jan/22/'; date_par = '2017/Jan/22/';
-date_dir = '2017/Jan/23/'; date_par = '2017/Jan/23/';
+%date_dir = '2017/Jan/23/'; date_par = '2017/Jan/23/';
+date_dir = '2017/Jan/24/'; date_par = '2017/Jan/24/';
 
 %set_dir = 'ele131/'; plot_name = 'ele131';
 %set_dir = 'hol131/'; plot_name = 'hol131';
@@ -64,10 +65,12 @@ date_dir = '2017/Jan/23/'; date_par = '2017/Jan/23/';
 %set_dir = 'long80part02wid10/'; plot_name = 'long80part02wid10';
 %set_dir = 'long80part02wid01/'; plot_name = 'long80part02wid01';
 %set_dir = 'long80part01wid01/'; plot_name = 'long80part01wid01';
-set_dir = 'long80part01wid10/'; plot_name = 'long80part01wid10';
+%set_dir = 'long80part01wid10/'; plot_name = 'long80part01wid10';
 %set_dir = 'long80part01wid20/'; plot_name = 'long80part01wid20';
 %set_dir = 'long80part01wid30/'; plot_name = 'long80part01wid30';
 %set_dir = 'n2long80part01wid01/'; plot_name = 'n2long80part01wid01';
+%set_dir = 'uniform_test/'; plot_name = 'uniform_test';
+set_dir = 'n30shift120part016wid10/'; plot_name = 'n30shift120part016wid10';
 
 data_loc = [data_dir set_dir];
 plot_loc = [plot_dir set_dir];
@@ -100,7 +103,7 @@ end
 
 %% LOAD DATA
 
-file_number = 2;
+file_number = 3;
 num_str = num2str(file_number,'%06d');
 
 bp_file = ['MS/DENSITY/beam/charge/charge-beam-' num_str '.h5'];
