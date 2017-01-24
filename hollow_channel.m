@@ -133,3 +133,19 @@ if strcmp(type,'partial')
   
     
 end
+
+if strcmp(type,'uniform')
+    
+    n_in = param_struct.hollow.n_in;
+    r_ramp = param_struct.hollow.r_ramp/param_struct.plasma.SD;
+    
+    r_ll = radius-width/2-r_ramp;
+    r_lh = radius-width/2;
+    r_hh = radius+width/2;
+    r_hl = radius+width/2+r_ramp;
+    
+    R_vec = [0 r_ll r_lh r_hh r_hl r_max];
+    N_vec = [n_in n_in n_in n_in n_in n_in];
+  
+    
+end
