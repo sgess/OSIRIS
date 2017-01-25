@@ -28,7 +28,7 @@ if ~exist(command_dir,'dir')
     mkdir(command_dir);
 end
 
-osinput_output_name = 'n30shift120part016wid30';
+osinput_output_name = 'n30shift120part010wid30';
 osinput_output_file = [osinput_dir 'os-stdin_' osinput_output_name];
 
 write = 1;
@@ -69,7 +69,7 @@ input_struct.hollow.width      = 30;              % annulus width in microns
 input_struct.hollow.ramp       = 0.1;             % ramp length in microns
 input_struct.hollow.r_ramp     = 10;              % ramp length in microns
 input_struct.hollow.n_points   = 6;               % number of points in profile
-input_struct.hollow.n_in       = 0.016;           % density of partial channel
+input_struct.hollow.n_in       = 0.010;           % density of partial channel
 input_struct.hollow.type       = 'partial';       % profile type
 
 % beam parameters
