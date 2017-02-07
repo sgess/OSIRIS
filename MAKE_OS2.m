@@ -28,7 +28,7 @@ if ~exist(command_dir,'dir')
     mkdir(command_dir);
 end
 
-osinput_output_name = 'n30shift120part010flatRamp0';
+osinput_output_name = 'inputProfTest';
 osinput_output_file = [osinput_dir 'os-stdin_' osinput_output_name];
 
 write = 1;
@@ -70,7 +70,8 @@ input_struct.hollow.ramp       = 1;               % ramp length in microns
 input_struct.hollow.r_ramp     = 0.1;             % ramp length in microns
 input_struct.hollow.n_points   = 6;               % number of points in profile
 input_struct.hollow.n_in       = 0.010;           % density of partial channel
-input_struct.hollow.type       = 'hollowPart';    % profile type
+input_struct.hollow.type       = 'loadProf';      % profile type
+input_struct.hollow.file='scratch/radial_prof.mat';% input file
 
 % beam parameters
 input_struct.beam.charge       = 1.0;             % -1 for electron, +1 for positron

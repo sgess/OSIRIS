@@ -170,3 +170,12 @@ if strcmp(type,'hollowPart')
     N_vec(6) = 1.0;
     
 end
+
+if strcmp(type,'loadProf')
+    
+    load(param_struct.hollow.file);
+    R_vec = radial_prof.r_vec/param_struct.plasma.SD;
+    R_vec(1) = 0;
+    R_vec(end) = r_max;
+    N_vec = radial_prof.n_vec;
+end

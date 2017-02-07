@@ -142,7 +142,9 @@ if param_struct.hollow.use
     param_struct.hollow.ramp     = input_struct.hollow.ramp;
     param_struct.hollow.r_ramp   = input_struct.hollow.r_ramp;
     param_struct.hollow.n_in     = input_struct.hollow.n_in;
+    param_struct.hollow.file     = input_struct.hollow.file;
     [param_struct.hollow.R_vec, param_struct.hollow.N_vec] = hollow_channel(param_struct);
+    param_struct.hollow.n_points = numel(param_struct.hollow.R_vec);
 else
     param_struct.pos.plasma_R_start = 0.0;                                                                         % Plasma start [skin depths]
     param_struct.pos.plasma_R_end   = param_struct.size.Box_R-0.1;                                                 % Plasma end [skin depths]
